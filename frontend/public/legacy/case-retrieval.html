@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>类案检索 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/case-retrieval.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="retrieval"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay retrieval-workspace" id="retrievalWorkspace" aria-label="类案检索">
+      <section class="panel left-panel retrieval-panel" aria-label="检索结果列表">
+        <header class="retrieval-head">
+          <div class="retrieval-head-copy">
+            <h1 class="retrieval-title">类案检索</h1>
+          </div>
+          <p class="retrieval-status" id="retrievalStatus" role="status" aria-live="polite"></p>
+        </header>
+
+        <div class="dashboard-top-grid">
+          <input class="search-input" id="retrievalSearchInput" type="text" placeholder="请输入关键词搜索案例…">
+          <button class="liquid-glass search-btn" id="retrievalSearchBtn" type="button">搜索</button>
+        </div>
+
+        <div class="retrieval-body">
+          <aside class="retrieval-filters" aria-label="检索筛选">
+            <div class="retrieval-conditions" aria-label="检索条件">
+              <div class="retrieval-condition-item">
+                <select class="retrieval-condition-select" id="retrievalTypeSelect" aria-label="检索内容">
+                  <option value="auto">默认</option>
+                  <option value="law">仅法规</option>
+                  <option value="case">仅类案</option>
+                </select>
+              </div>
+              <div class="retrieval-condition-item">
+                <select class="retrieval-condition-select" id="retrievalTimeRangeSelect" aria-label="时间范围">
+                  <option value="all">时间范围</option>
+                  <option value="1y">近一年</option>
+                  <option value="3y">近三年</option>
+                  <option value="5y">近五年</option>
+                  <option value="10y">近十年</option>
+                </select>
+              </div>
+              <div class="retrieval-condition-item">
+                <select class="retrieval-condition-select" id="retrievalCourtLevelSelect" aria-label="地域或法院层级">
+                  <option value="national">地域/法院层级</option>
+                  <option value="province">省份</option>
+                  <option value="intermediate">中院</option>
+                  <option value="high">高院</option>
+                  <option value="supreme">最高院</option>
+                </select>
+              </div>
+              <div class="retrieval-condition-item">
+                <select class="retrieval-condition-select" id="retrievalLawLevelSelect" aria-label="法规效力层级">
+                  <option value="all">法规效力层级</option>
+                  <option value="law">法律</option>
+                  <option value="admin_regulation">行政法规</option>
+                  <option value="judicial_interpretation">司法解释</option>
+                  <option value="local_regulation">地方法规</option>
+                </select>
+              </div>
+            </div>
+          </aside>
+
+          <div class="retrieval-main">
+            <section class="results-panel retrieval-results-panel">
+              <div class="results-list" id="caseList"></div>
+              <div class="results-pagination" id="resultsPagination">
+                <button class="page-btn" id="prevPageBtn" type="button">上一页</button>
+                <div class="page-numbers" id="pageNumbers" aria-label="页码"></div>
+                <div class="page-jump">
+                  <input class="page-jump-input" id="pageJumpInput" type="number" min="1" placeholder="页码">
+                  <button class="page-btn" id="pageJumpBtn" type="button">跳转</button>
+                </div>
+                <button class="page-btn" id="nextPageBtn" type="button">下一页</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/case-retrieval.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+.consult-detail-workspace{
+  grid-template-columns: 1.7fr 1fr;
+}
+
+.consult-detail-panel{
+  gap: 12px;
+}
+
+.consult-detail-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.consult-detail-title{
+  font-family: "Instrument Serif", serif;
+  font-size: 34px;
+  line-height: 1.15;
+  margin: 0;
+  color: #000000;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.consult-detail-sub{
+  margin-top: 8px;
+  color: rgba(0,0,0,.74);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.consult-detail-actions{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.consult-detail-btn{
+  text-decoration:none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.consult-detail-btn--ghost{
+  background: rgba(255,255,255,.55);
+}
+
+.consult-detail-body{
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border-radius: 0;
+  border: 1px solid var(--hairline);
+  background: #fafafa;
+  padding: 14px;
+}
+
+.consult-block{
+  border-radius: 0;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  padding: 12px 12px;
+}
+
+.consult-block + .consult-block{
+  margin-top: 12px;
+}
+
+.consult-block-title{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0,0,0,.92);
+}
+
+.consult-block-meta{
+  margin-top: 8px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: rgba(0,0,0,.72);
+  font-size: 12px;
+}
+
+.consult-block-text{
+  margin-top: 10px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #000000;
+}
+
+.consult-reply{
+  padding-left: 10px;
+  border-left: 3px solid rgba(88, 139, 231, 0.38);
+}
+

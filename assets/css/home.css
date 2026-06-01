@@ -1,0 +1,174 @@
+.page {
+  max-width: none;
+}
+
+.home-page {
+  max-width: none;
+  padding: 0;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+}
+
+.home-snap-container {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.home-section {
+  height: 100vh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: none;
+  z-index: 20;
+  width: min(80vw, 1520px);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.82);
+  border-color: var(--hairline);
+  box-shadow: none;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 128px 12px 40px;
+  color: #000000;
+}
+
+.home-section-1.hero h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(46px, 7vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -1.46px;
+  max-width: 1024px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.subtitle {
+  margin-top: 28px;
+  max-width: 672px;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.6;
+  color: #000000;
+}
+
+.cta {
+  margin-top: 48px;
+  padding: 20px 56px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.home-section-2,
+.home-section-3,
+.home-section-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 12px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home-section-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 620px;
+  width: min(620px, calc(100vw - 72px));
+  text-align: left;
+  color: #000000;
+}
+
+.home-section-2 .home-section-content {
+  right: 10%;
+}
+
+.home-section-3 .home-section-content,
+.home-section-4 .home-section-content {
+  left: 10%;
+}
+
+.home-section-title {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4vw, 52px);
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+  color: #000000;
+}
+
+.home-section-subtitle {
+  margin-top: 16px;
+  font-size: clamp(14px, 1.9vw, 18px);
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.home-scroll-down {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 18;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.home-scroll-down.is-visible {
+  display: flex;
+}
+
+.home-scroll-down:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.home-scroll-down:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+.home-scroll-down--light {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.home-scroll-down--light:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+  border-color: rgba(0, 0, 0, 0.2);
+}

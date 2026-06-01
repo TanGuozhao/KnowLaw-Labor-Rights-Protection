@@ -1,0 +1,10 @@
+﻿{
+  "_comment": "合同审查专用参数；api_key/base_url 可留空以沿用法律咨询同一套大模型配置。",
+  "model": "",
+  "temperature": 0.3,
+  "max_tokens": 16384,
+  "max_input_chars": 24000,
+  "max_contract_chars": 120000,
+  "enable_enhancement": true,
+  "system_prompt": "你是专注劳动法律实务的律师助理，负责劳动合同审查。请使用简体中文，分条列出风险点、法律依据（如有把握）与修改建议，表述简洁专业。"
+}

@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>文书生成 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/document-generator.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="document-generator"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay doc-gen-workspace" aria-label="文书生成">
+      <section class="panel left-panel doc-gen-form-panel doc-gen-no-print" aria-label="文书信息">
+        <div class="panel-head">
+          <div class="doc-gen-panel-head-row">
+            <h1>文书生成</h1>
+            <select id="docTemplate" class="search-input doc-gen-compact-select" aria-label="选择文书模板" required>
+              <option value="labor_mediation_application">劳动争议调解申请书</option>
+              <option value="labor_security_inspection_complaint" selected>劳动保障监察投诉书</option>
+              <option value="labor_arbitration_application">劳动人事争议仲裁申请书</option>
+              <option value="evidence_list">证据材料清单</option>
+              <option value="civil_complaint">民事起诉状</option>
+              <option value="enforcement_application">申请执行书</option>
+            </select>
+          </div>
+        </div>
+        <form id="docGenForm" class="doc-gen-form">
+          <input id="docType" type="hidden" value="complaint">
+
+          <div id="docGenScrollArea" class="doc-gen-scroll-area">
+            <div id="docGenFieldsArea">
+              <div id="docGenLaborPanel" class="doc-gen-template-panel">
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="投诉书字段第一页">
+                <div class="doc-gen-two-column doc-gen-two-column-vertical">
+                  <section class="doc-gen-subgroup" aria-label="投诉人信息">
+                    <h4>投诉人信息</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>投诉人姓名</span>
+                      <input id="applicant" class="search-input" type="text" placeholder="姓名或主体名称" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>性别</span>
+                      <select id="complainantGender" class="search-input" required>
+                        <option value="">投诉人性别</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                      </select>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>手机号</span>
+                      <input id="applicantPhone" class="search-input" type="tel" maxlength="20" placeholder="手机或固定电话" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>身份证号</span>
+                      <input id="complainantIdNumber" class="search-input" type="text" maxlength="32" placeholder="身份证号/其他证件号" required>
+                    </label>
+                    <div class="doc-gen-grid doc-gen-field-span-2 doc-gen-inline-label-group">
+                      <span class="doc-gen-inline-label-title">省/市/区</span>
+                      <select id="complainantProvince" class="search-input" required>
+                        <option value="">省/直辖市</option>
+                        <option value="北京市">北京市</option>
+                        <option value="天津市">天津市</option>
+                        <option value="上海市">上海市</option>
+                        <option value="重庆市">重庆市</option>
+                        <option value="河北省">河北省</option>
+                        <option value="山西省">山西省</option>
+                        <option value="辽宁省">辽宁省</option>
+                        <option value="吉林省">吉林省</option>
+                        <option value="黑龙江省">黑龙江省</option>
+                        <option value="江苏省">江苏省</option>
+                        <option value="浙江省">浙江省</option>
+                        <option value="安徽省">安徽省</option>
+                        <option value="福建省">福建省</option>
+                        <option value="江西省">江西省</option>
+                        <option value="山东省">山东省</option>
+                        <option value="河南省">河南省</option>
+                        <option value="湖北省">湖北省</option>
+                        <option value="湖南省">湖南省</option>
+                        <option value="广东省">广东省</option>
+                        <option value="海南省">海南省</option>
+                        <option value="四川省">四川省</option>
+                        <option value="贵州省">贵州省</option>
+                        <option value="云南省">云南省</option>
+                        <option value="陕西省">陕西省</option>
+                        <option value="甘肃省">甘肃省</option>
+                        <option value="青海省">青海省</option>
+                        <option value="台湾省">台湾省</option>
+                        <option value="内蒙古自治区">内蒙古自治区</option>
+                        <option value="广西壮族自治区">广西壮族自治区</option>
+                        <option value="西藏自治区">西藏自治区</option>
+                        <option value="宁夏回族自治区">宁夏回族自治区</option>
+                        <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                        <option value="香港特别行政区">香港特别行政区</option>
+                        <option value="澳门特别行政区">澳门特别行政区</option>
+                      </select>
+                      <select id="complainantCity" class="search-input" required>
+                        <option value="">先选省，再选市</option>
+                      </select>
+                      <select id="complainantDistrict" class="search-input" required>
+                        <option value="">先选市，再选区/县</option>
+                      </select>
+                    </div>
+                    <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                      <span>详细地址</span>
+                      <input id="complainantAddressDetail" class="search-input" type="text" maxlength="120" placeholder="详细地址（街道、门牌号）" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>邮编</span>
+                      <input id="complainantPostalCode" class="search-input" type="text" maxlength="12" placeholder="通讯地址邮编" required>
+                    </label>
+                    </div>
+                  </section>
+                  <section class="doc-gen-subgroup" aria-label="被投诉人信息">
+                    <h4>被投诉人信息</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                    <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                      <span>被投诉人 / 被投诉单位</span>
+                      <input id="respondent" class="search-input" type="text" placeholder="公司或主体名称" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                      <span>注册地址</span>
+                      <input id="respondentRegisteredAddress" class="search-input" type="text" maxlength="120" placeholder="营业执照注册地址" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                      <span>实际办公或经营地点</span>
+                      <input
+                        id="respondentBusinessRegion"
+                        class="search-input"
+                        type="text"
+                        placeholder="省/市/区（如：浙江省杭州市西湖区）"
+                        required
+                      >
+                    </label>
+                    <div class="doc-gen-hidden-region-selects" aria-hidden="true">
+                      <select id="respondentBusinessProvince" class="search-input">
+                        <option value="">省/直辖市</option>
+                        <option value="北京市">北京市</option>
+                        <option value="天津市">天津市</option>
+                        <option value="上海市">上海市</option>
+                        <option value="重庆市">重庆市</option>
+                        <option value="河北省">河北省</option>
+                        <option value="山西省">山西省</option>
+                        <option value="辽宁省">辽宁省</option>
+                        <option value="吉林省">吉林省</option>
+                        <option value="黑龙江省">黑龙江省</option>
+                        <option value="江苏省">江苏省</option>
+                        <option value="浙江省">浙江省</option>
+                        <option value="安徽省">安徽省</option>
+                        <option value="福建省">福建省</option>
+                        <option value="江西省">江西省</option>
+                        <option value="山东省">山东省</option>
+                        <option value="河南省">河南省</option>
+                        <option value="湖北省">湖北省</option>
+                        <option value="湖南省">湖南省</option>
+                        <option value="广东省">广东省</option>
+                        <option value="海南省">海南省</option>
+                        <option value="四川省">四川省</option>
+                        <option value="贵州省">贵州省</option>
+                        <option value="云南省">云南省</option>
+                        <option value="陕西省">陕西省</option>
+                        <option value="甘肃省">甘肃省</option>
+                        <option value="青海省">青海省</option>
+                        <option value="台湾省">台湾省</option>
+                        <option value="内蒙古自治区">内蒙古自治区</option>
+                        <option value="广西壮族自治区">广西壮族自治区</option>
+                        <option value="西藏自治区">西藏自治区</option>
+                        <option value="宁夏回族自治区">宁夏回族自治区</option>
+                        <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                        <option value="香港特别行政区">香港特别行政区</option>
+                        <option value="澳门特别行政区">澳门特别行政区</option>
+                      </select>
+                      <select id="respondentBusinessCity" class="search-input">
+                        <option value="">先选省，再选市</option>
+                      </select>
+                      <select id="respondentBusinessDistrict" class="search-input">
+                        <option value="">先选市，再选区/县</option>
+                      </select>
+                    </div>
+                    <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                      <span>法定代表人（主要负责人）</span>
+                      <input id="respondentLegalRepresentative" class="search-input" type="text" maxlength="50" placeholder="法定代表人姓名" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>联系人姓名</span>
+                      <input id="respondentContactName" class="search-input" type="text" maxlength="50" placeholder="单位联系人姓名" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>联系人职务</span>
+                      <input id="respondentContactJobTitle" class="search-input" type="text" maxlength="50" placeholder="例如：人事经理" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>联系人电话</span>
+                      <input id="respondentContactPhone" class="search-input" type="tel" maxlength="20" placeholder="手机或固定电话" required>
+                    </label>
+                    <label class="doc-gen-field doc-gen-inline-label">
+                      <span>单位邮编</span>
+                      <input id="respondentPostalCode" class="search-input" type="text" maxlength="12" placeholder="单位邮编" required>
+                    </label>
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section class="doc-gen-block doc-gen-page" data-page="2" aria-label="投诉书字段第二页">
+                <h4>正文</h4>
+                <div class="doc-gen-inline-grid doc-gen-inline-grid--stack">
+                  <label class="doc-gen-field">
+                    <span>请求事项</span>
+                    <textarea id="claims" class="search-input doc-gen-textarea" rows="2" placeholder="你希望对方做什么：每行一条（如：1.支付拖欠工资12000元 2.补缴社保）" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>事实与理由</span>
+                    <textarea id="facts" class="search-input doc-gen-textarea" rows="3" placeholder="客观描述事件经过" required></textarea>
+                  </label>
+                </div>
+              </section>
+              </div>
+
+              <div id="docGenCivilPanel" class="doc-gen-template-panel" hidden>
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="民事起诉状第一页">
+                <div class="doc-gen-two-column doc-gen-two-column-vertical">
+                  <section class="doc-gen-subgroup" aria-label="原告（自然人）">
+                    <h4>原告</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>姓名</span>
+                        <input id="civilPlaintiffName" class="search-input" type="text" maxlength="80" placeholder="原告姓名" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>性别</span>
+                        <select id="civilPlaintiffGender" class="search-input" required>
+                          <option value="">请选择</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
+                        </select>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>民族</span>
+                        <input id="civilPlaintiffEthnicity" class="search-input" type="text" maxlength="20" placeholder="如：汉族" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>出生日期</span>
+                        <input id="civilPlaintiffBirth" class="search-input" type="text" maxlength="40" placeholder="如：1990年1月1日" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址</span>
+                        <input id="civilPlaintiffAddress" class="search-input" type="text" maxlength="200" placeholder="户籍或经常居住地" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证号</span>
+                        <input id="civilPlaintiffIdNumber" class="search-input" type="text" maxlength="32" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="civilPlaintiffPhone" class="search-input" type="tel" maxlength="20" required>
+                      </label>
+                    </div>
+                  </section>
+                  <section class="doc-gen-subgroup" aria-label="被告">
+                    <h4>被告</h4>
+                    <p class="doc-gen-hint">起诉自然人：填姓名、住址、电话；起诉单位：填单位全称，并填写法定代表人/主要负责人。</p>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>姓名或单位名称</span>
+                        <input id="civilDefendantName" class="search-input" type="text" maxlength="120" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址 / 住所地</span>
+                        <input id="civilDefendantAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="civilDefendantPhone" class="search-input" type="tel" maxlength="20">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>法定代表人（单位被告时填）</span>
+                        <input id="civilDefendantLegalRepresentative" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section class="doc-gen-block doc-gen-page" data-page="2" aria-label="民事起诉状第二页">
+                <h4>起诉状正文信息</h4>
+                <div class="doc-gen-inline-grid">
+                  <label class="doc-gen-field">
+                    <span>受诉人民法院</span>
+                    <input id="civilCourtName" class="search-input" type="text" placeholder="如：杭州市西湖区人民法院" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>案由</span>
+                    <input id="civilCaseCause" class="search-input" type="text" maxlength="200" placeholder="如：劳动争议纠纷" required>
+                  </label>
+                </div>
+                <div class="doc-gen-inline-grid">
+                  <label class="doc-gen-field">
+                    <span>诉讼请求</span>
+                    <textarea id="civilClaims" class="search-input doc-gen-textarea" rows="4" placeholder="分条写明，如：1. 判令被告支付工资××元；2. …" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>事实与理由</span>
+                    <textarea id="civilFacts" class="search-input doc-gen-textarea" rows="5" placeholder="时间、法律关系、经过、依据等" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>证据和证据来源（可选）</span>
+                    <textarea id="civilEvidenceList" class="search-input doc-gen-textarea" rows="3" placeholder="如：1. 劳动合同；2. 银行流水"></textarea>
+                  </label>
+                </div>
+              </section>
+              </div>
+
+              <div id="docGenEnforcementPanel" class="doc-gen-template-panel" hidden>
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="申请执行书第一页">
+                <div class="doc-gen-two-column doc-gen-two-column-vertical">
+                  <section class="doc-gen-subgroup" aria-label="申请执行人">
+                    <h4>申请执行人</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>姓名</span>
+                        <input id="enfApplicantName" class="search-input" type="text" maxlength="80" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>性别</span>
+                        <select id="enfApplicantGender" class="search-input" required>
+                          <option value="">请选择</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
+                        </select>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>民族</span>
+                        <input id="enfApplicantEthnicity" class="search-input" type="text" maxlength="20" placeholder="如：汉族" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>出生日期</span>
+                        <input id="enfApplicantBirth" class="search-input" type="text" maxlength="40" placeholder="如：1990年1月1日" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>工作单位及职业（可空，空则按范文保留提示语）</span>
+                        <input id="enfApplicantJob" class="search-input" type="text" maxlength="120" placeholder="如：××公司职员">
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址</span>
+                        <input id="enfApplicantAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证号</span>
+                        <input id="enfApplicantIdNumber" class="search-input" type="text" maxlength="32" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="enfApplicantPhone" class="search-input" type="tel" maxlength="20" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>法定代理人/指定代理人（可空，空则填「无」）</span>
+                        <input id="enfLegalRep" class="search-input" type="text" maxlength="200" placeholder="如：张三，联系电话……">
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>委托诉讼代理人（可空，空则填「无」）</span>
+                        <input id="enfEntrustedAgent" class="search-input" type="text" maxlength="200" placeholder="如：李律师，××律师事务所">
+                      </label>
+                    </div>
+                  </section>
+                  <section class="doc-gen-subgroup" aria-label="被执行人">
+                    <h4>被执行人</h4>
+                    <p class="doc-gen-hint">与法院申请执行书用语一致；自然人：姓名、住址；单位：名称、住所地、法定代表人。</p>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>姓名或单位名称</span>
+                        <input id="enfRespondentName" class="search-input" type="text" maxlength="120" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址 / 住所地</span>
+                        <input id="enfRespondentAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="enfRespondentPhone" class="search-input" type="tel" maxlength="20">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>法定代表人（单位时填）</span>
+                        <input id="enfRespondentLegalRepresentative" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section class="doc-gen-block doc-gen-page" data-page="2" aria-label="申请执行书第二页">
+                <h4>执行申请正文信息</h4>
+                <div class="doc-gen-inline-grid">
+                  <label class="doc-gen-field">
+                    <span>案由（用于正文「……一案」）</span>
+                    <input id="enfCaseCause" class="search-input" type="text" maxlength="120" placeholder="如：劳动争议纠纷" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>执行法院（此致）</span>
+                    <input id="enfCourtName" class="search-input" type="text" placeholder="如：杭州市西湖区人民法院" required>
+                  </label>
+                </div>
+                <div class="doc-gen-inline-grid">
+                  <label class="doc-gen-field">
+                    <span>生效法律文书案号</span>
+                    <input id="enfBasisJudgmentNo" class="search-input" type="text" maxlength="120" placeholder="如：（2024）浙0106民初1234号" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>作出机关</span>
+                    <input id="enfBasisIssuer" class="search-input" type="text" maxlength="200" placeholder="如：杭州市西湖区人民法院" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>生效日期</span>
+                    <input id="enfBasisEffectiveDate" class="search-input" type="text" maxlength="40" placeholder="如：2024年12月1日" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>执行依据补充说明（可选）</span>
+                    <textarea id="enfBasisExtra" class="search-input doc-gen-textarea" rows="2" placeholder="调解书/裁决书要点、履行情况等"></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>文书类型表述（插入正文，可空）</span>
+                    <input id="enfBasisDocTypePhrase" class="search-input" type="text" maxlength="80" placeholder="默认：民事判决（或其他生效法律文书）">
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>附件说明（可空，默认「附：生效法律文书壹份」）</span>
+                    <input id="enfAttachmentLine" class="search-input" type="text" maxlength="120" placeholder="附：生效法律文书贰份">
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>申请执行事项</span>
+                    <textarea id="enfRequests" class="search-input doc-gen-textarea" rows="4" placeholder="如：1. 强制被申请人支付××元；2. 加倍迟延履行利息；3. 执行费用由被申请人承担。" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>事实与理由</span>
+                    <textarea id="enfFacts" class="search-input doc-gen-textarea" rows="5" placeholder="简述生效文书内容、被申请人拒不履行情况等" required></textarea>
+                  </label>
+                </div>
+              </section>
+              </div>
+
+              <div id="docGenArbitrationPanel" class="doc-gen-template-panel" hidden>
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="劳动仲裁申请书第一页">
+                <div class="doc-gen-two-column doc-gen-two-column-vertical">
+                  <section class="doc-gen-subgroup" aria-label="申请人">
+                    <h4>申请人</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>姓名</span>
+                        <input id="arbApplicantName" class="search-input" type="text" maxlength="80" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>性别</span>
+                        <select id="arbApplicantGender" class="search-input" required>
+                          <option value="">请选择</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
+                        </select>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>民族</span>
+                        <input id="arbApplicantEthnicity" class="search-input" type="text" maxlength="20" placeholder="如：汉族" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>出生日期</span>
+                        <input id="arbApplicantBirth" class="search-input" type="text" maxlength="40" placeholder="如：1990年1月1日" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址</span>
+                        <input id="arbApplicantAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证号</span>
+                        <input id="arbApplicantIdNumber" class="search-input" type="text" maxlength="32" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证件类型</span>
+                        <input id="arbApplicantIdType" class="search-input" type="text" maxlength="40" placeholder="如：居民身份证" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>工作单位及职务</span>
+                        <input id="arbApplicantJob" class="search-input" type="text" maxlength="120" placeholder="如：某公司工程师">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="arbApplicantPhone" class="search-input" type="tel" maxlength="20" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>劳动合同履行地</span>
+                        <input id="arbContractPerformancePlace" class="search-input" type="text" maxlength="200" placeholder="如：成都市高新区">
+                      </label>
+                    </div>
+                  </section>
+                  <section class="doc-gen-subgroup" aria-label="被申请人">
+                    <h4>被申请人</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>姓名或单位名称</span>
+                        <input id="arbRespondentName" class="search-input" type="text" maxlength="120" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址 / 住所地</span>
+                        <input id="arbRespondentAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="arbRespondentPhone" class="search-input" type="tel" maxlength="20">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>法定代表人（单位时填）</span>
+                        <input id="arbRespondentLegalRepresentative" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>法定代表人职务</span>
+                        <input id="arbRespondentLegalRepresentativeJob" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>办公地或经营地</span>
+                        <input id="arbRespondentBusinessPlace" class="search-input" type="text" maxlength="200" placeholder="可选">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系人</span>
+                        <input id="arbRespondentContactPerson" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section class="doc-gen-block doc-gen-page" data-page="2" aria-label="劳动仲裁申请书第二页">
+                <h4>仲裁申请正文信息</h4>
+                <div class="doc-gen-inline-grid">
+                  <label class="doc-gen-field">
+                    <span>劳动人事争议仲裁委员会（全称）</span>
+                    <input id="arbCommission" class="search-input" type="text" placeholder="如：××市劳动人事争议仲裁委员会" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>仲裁请求</span>
+                    <textarea id="arbClaims" class="search-input doc-gen-textarea" rows="4" placeholder="如：1. 支付拖欠工资××元；2. 支付经济补偿金××元。" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>事实与理由</span>
+                    <textarea id="arbFacts" class="search-input doc-gen-textarea" rows="5" placeholder="入职时间、岗位、工资、争议经过等" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>证据和证据来源（可空，多条请换行）</span>
+                    <textarea id="arbEvidenceList" class="search-input doc-gen-textarea" rows="4" placeholder="如：劳动合同；工资银行流水；考勤记录"></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>委托代理人（可选）</span>
+                    <input id="arbAgentBlock" class="search-input" type="text" maxlength="200" placeholder="如：张三，某某律师事务所律师">
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>附件说明（可选）</span>
+                    <textarea id="arbAttachmentLine" class="search-input doc-gen-textarea" rows="3" placeholder="如：附：工伤保险待遇计算明细表"></textarea>
+                  </label>
+                </div>
+              </section>
+              </div>
+
+              <div id="docGenMediationPanel" class="doc-gen-template-panel" hidden>
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="劳动争议调解申请书第一页">
+                <div class="doc-gen-two-column doc-gen-two-column-vertical">
+                  <section class="doc-gen-subgroup" aria-label="申请人">
+                    <h4>申请人</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>姓名</span>
+                        <input id="medApplicantName" class="search-input" type="text" maxlength="80" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>性别</span>
+                        <select id="medApplicantGender" class="search-input" required>
+                          <option value="">请选择</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
+                        </select>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>民族</span>
+                        <input id="medApplicantEthnicity" class="search-input" type="text" maxlength="20" placeholder="如：汉族" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>出生日期</span>
+                        <input id="medApplicantBirth" class="search-input" type="text" maxlength="40" placeholder="如：1990年1月1日" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址</span>
+                        <input id="medApplicantAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证号</span>
+                        <input id="medApplicantIdNumber" class="search-input" type="text" maxlength="32" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>身份证件类型</span>
+                        <input id="medApplicantIdType" class="search-input" type="text" maxlength="40" placeholder="如：居民身份证" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>工作单位及职务</span>
+                        <input id="medApplicantJob" class="search-input" type="text" maxlength="120" placeholder="如：某公司工程师" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="medApplicantPhone" class="search-input" type="tel" maxlength="20" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>劳动合同履行地</span>
+                        <input id="medContractPerformancePlace" class="search-input" type="text" maxlength="200" placeholder="如：成都市高新区" required>
+                      </label>
+                    </div>
+                  </section>
+                  <section class="doc-gen-subgroup" aria-label="被申请人">
+                    <h4>被申请人</h4>
+                    <div class="doc-gen-grid doc-gen-grid-2">
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>姓名或单位名称</span>
+                        <input id="medRespondentName" class="search-input" type="text" maxlength="120" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-field-span-2 doc-gen-inline-label">
+                        <span>住址 / 住所地</span>
+                        <input id="medRespondentAddress" class="search-input" type="text" maxlength="200" required>
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系电话</span>
+                        <input id="medRespondentPhone" class="search-input" type="tel" maxlength="20">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>法定代表人（单位时填）</span>
+                        <input id="medRespondentLegalRepresentative" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>办公地或经营地</span>
+                        <input id="medRespondentBusinessPlace" class="search-input" type="text" maxlength="200" placeholder="可选">
+                      </label>
+                      <label class="doc-gen-field doc-gen-inline-label">
+                        <span>联系人</span>
+                        <input id="medRespondentContactPerson" class="search-input" type="text" maxlength="80" placeholder="可选">
+                      </label>
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section class="doc-gen-block doc-gen-page" data-page="2" aria-label="劳动争议调解申请书第二页">
+                <h4>调解申请正文信息</h4>
+                <div class="doc-gen-inline-grid doc-gen-inline-grid--stack">
+                  <label class="doc-gen-field">
+                    <span>调解请求</span>
+                    <textarea id="medClaims" class="search-input doc-gen-textarea" rows="4" placeholder="希望调解解决的具体事项" required></textarea>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>事实与理由</span>
+                    <textarea id="medFacts" class="search-input doc-gen-textarea" rows="5" placeholder="争议发生经过、与单位沟通情况等" required></textarea>
+                  </label>
+                </div>
+              </section>
+              </div>
+
+              <div id="docGenEvidencePanel" class="doc-gen-template-panel" hidden>
+              <section class="doc-gen-block doc-gen-page is-active" data-page="1" aria-label="证据材料清单">
+                <h4>证据条目与提交信息</h4>
+                <p class="doc-gen-hint">与常见法院格式一致：序号、证据名称、来源、说明、页数；底部可填写合计与提交信息。行数不够可点「添加一行」。</p>
+                <div class="doc-gen-evidence-table-scroll">
+                  <table class="doc-gen-evidence-edit-table" aria-label="证据条目">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="doc-gen-evl-col-idx">序号</th>
+                        <th scope="col">证据名称</th>
+                        <th scope="col">证据来源</th>
+                        <th scope="col">证据说明</th>
+                        <th scope="col" class="doc-gen-evl-col-pages">页数</th>
+                      </tr>
+                    </thead>
+                    <tbody id="evlRows"></tbody>
+                  </table>
+                </div>
+                <div class="doc-gen-inline-grid doc-gen-evl-meta">
+                  <label class="doc-gen-field">
+                    <span>提交人</span>
+                    <input id="evlSubmitterName" class="search-input" type="text" maxlength="80" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>提交日期</span>
+                    <input id="evlSubmissionDate" class="search-input" type="text" maxlength="40" placeholder="如：2026年4月19日" required>
+                  </label>
+                  <label class="doc-gen-field">
+                    <span>法院接收人（可空）</span>
+                    <input id="evlCourtReceiver" class="search-input" type="text" maxlength="80" placeholder="可选">
+                  </label>
+                </div>
+              </section>
+              </div>
+            </div>
+          </div>
+
+          <section id="docGenStickySmart" class="doc-gen-block doc-gen-sticky-smart" aria-label="智能识别">
+            <h3>输入一段案情（智能识别要素）</h3>
+            <label class="doc-gen-field">
+              <span>粘贴完整案情后，系统会回填上方字段</span>
+              <textarea id="smartNarrative" class="search-input doc-gen-textarea doc-gen-smart-textarea" rows="5" placeholder="不会填可直接写经过：我是谁、何时入职、发生了什么、诉求是什么（系统会自动回填上方）"></textarea>
+            </label>
+            <div class="doc-gen-inline-actions">
+              <button class="liquid-glass search-btn doc-gen-secondary" id="applyNarrativeBtn" type="button">识别并更新上方字段</button>
+            </div>
+          </section>
+
+          <div class="doc-gen-page-actions doc-gen-sticky-pagination">
+            <button class="liquid-glass search-btn doc-gen-secondary" id="prevPageBtn" type="button" disabled>上一页</button>
+            <span id="docGenPageIndicator" class="doc-gen-page-indicator">第 1 页 / 共 2 页</span>
+            <button class="liquid-glass search-btn doc-gen-secondary" id="nextPageBtn" type="button">下一页</button>
+          </div>
+          <p id="docGenStatus" class="doc-gen-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="panel right-panel doc-gen-preview-panel" aria-label="文书预览与历史">
+        <div class="detail-head doc-gen-no-print">
+          <div class="doc-gen-preview-head-row">
+            <h2>预览与导出</h2>
+            <select id="caseQuickSelect" class="search-input doc-gen-compact-select" aria-label="从案件快速载入">
+              <option value="">从案件载入</option>
+            </select>
+          </div>
+        </div>
+        <div id="docPreview" class="detail-body doc-gen-preview doc-gen-print-area">
+          <p class="detail-empty">尚未生成文书，请先填写左侧信息。</p>
+        </div>
+        <p id="docGenWordCount" class="doc-gen-word-count" aria-live="polite"></p>
+        <div class="doc-gen-preview-actions doc-gen-preview-actions--two doc-gen-no-print">
+          <button class="liquid-glass search-btn" id="downloadWordBtn" type="button">保存 Word</button>
+          <button class="liquid-glass search-btn doc-gen-secondary" id="downloadPdfBtn" type="button">保存 PDF</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/document-generator.js"></script>
+</body>
+</html>

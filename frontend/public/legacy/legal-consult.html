@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>法律咨询 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/legal-consult.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="legal-consult"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay legal-consult-workspace" aria-label="法律咨询">
+      <aside class="panel legal-consult-sessions" aria-label="历史会话">
+        <div class="legal-consult-sessions-head">
+          <h3 class="legal-consult-sessions-title">历史会话</h3>
+          <button class="liquid-glass legal-consult-new-btn" id="newSessionBtn" type="button">新对话</button>
+        </div>
+        <div class="legal-consult-sessions-list" id="sessionList" role="list"></div>
+      </aside>
+      <section class="panel left-panel legal-consult-chat-shell" aria-label="法律咨询对话">
+        <section class="chat-panel" aria-label="对话面板">
+          <header class="chat-panel-head" aria-label="对话标题">
+            <div class="dashboard-top-grid chat-panel-head-grid">
+              <div class="chat-panel-title-wrap">
+                <h2 class="chat-panel-title">法律咨询</h2>
+              </div>
+            </div>
+          </header>
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-input-row">
+            <textarea id="chatInput" placeholder="请输入您的问题..."></textarea>
+            <button class="liquid-glass send-btn" id="sendBtn" type="button">发送</button>
+          </div>
+        </section>
+      </section>
+      <aside class="panel legal-consult-faqs" aria-label="常见问题解答">
+        <div class="legal-consult-faq-head">
+          <h3 class="legal-consult-faq-title">常见问题解答</h3>
+          <a class="legal-consult-faq-more" href="/consult-faqs">更多</a>
+        </div>
+        <div class="legal-consult-faq-list" id="faqList" role="list"></div>
+        <div class="legal-consult-faq-pagination">
+          <button class="liquid-glass legal-consult-faq-page-btn" id="faqPrevBtn" type="button">上一页</button>
+          <span class="legal-consult-faq-page-indicator" id="faqPageIndicator">第1页 / 共1页</span>
+          <button class="liquid-glass legal-consult-faq-page-btn" id="faqNextBtn" type="button">下一页</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="lawSourceModal" class="law-source-modal" hidden>
+    <div class="law-source-modal-backdrop" id="lawSourceModalBackdrop" aria-hidden="true"></div>
+    <div
+      class="law-source-modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lawSourceModalTitle"
+      aria-label="法规全文"
+    >
+      <div class="law-source-modal-head">
+        <h3 id="lawSourceModalTitle" class="law-source-modal-title"></h3>
+        <button type="button" class="law-source-modal-close" id="lawSourceModalClose" aria-label="关闭">
+          ×
+        </button>
+      </div>
+      <pre id="lawSourceModalBody" class="law-source-modal-body"></pre>
+    </div>
+  </div>
+
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/legal-consult.js"></script>
+</body>
+</html>

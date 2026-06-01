@@ -1,0 +1,11 @@
+﻿{
+  "base_url": "https://openapi.delilegal.com",
+  "appid": "REPLACE_WITH_DELI_APPID",
+  "secret": "REPLACE_WITH_DELI_SECRET",
+  "case_search_path": "/api/qa/v3/search/queryListCase",
+  "law_search_path": "/api/qa/v3/search/queryListLaw",
+  "pageNo": 1,
+  "pageSize": 10,
+  "sortField": "correlation",
+  "sortOrder": "desc"
+}

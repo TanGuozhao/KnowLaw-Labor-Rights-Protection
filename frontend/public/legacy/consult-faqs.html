@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>常见问题解答 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/consult-faqs.css">
+</head>
+<body>
+  <div class="overlay"></div>
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="legal-consult"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay consult-faqs-workspace" aria-label="常见问题解答页面">
+      <header class="consult-faqs-head">
+        <h1 class="consult-faqs-title">常见问题解答</h1>
+        <a class="consult-faqs-back" href="/legal-consult">返回法律咨询</a>
+      </header>
+
+      <section class="consult-faqs-toolbar" aria-label="筛选与排序">
+        <div class="consult-faqs-sort">
+          <button class="liquid-glass consult-faqs-sort-btn active" id="sortComprehensiveBtn" type="button">综合排序</button>
+          <button class="liquid-glass consult-faqs-sort-btn" id="sortAscBtn" type="button">时间顺序</button>
+          <button class="liquid-glass consult-faqs-sort-btn" id="sortDescBtn" type="button">时间倒序</button>
+        </div>
+        <div class="consult-faqs-search-wrap">
+          <input class="consult-faqs-search-input" id="faqSearchInput" type="text" placeholder="输入关键词检索常见问题..." />
+          <button class="liquid-glass consult-faqs-search-btn" id="faqSearchBtn" type="button">检索</button>
+        </div>
+      </section>
+
+      <section class="consult-faqs-list" id="faqPageList" role="list"></section>
+
+      <footer class="consult-faqs-pagination">
+        <button class="liquid-glass consult-faqs-page-btn" id="faqPagePrevBtn" type="button">上一页</button>
+        <span class="consult-faqs-page-indicator" id="faqPageIndicator">第1页 / 共1页</span>
+        <button class="liquid-glass consult-faqs-page-btn" id="faqPageNextBtn" type="button">下一页</button>
+      </footer>
+    </section>
+  </main>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/consult-faqs.js"></script>
+</body>
+</html>

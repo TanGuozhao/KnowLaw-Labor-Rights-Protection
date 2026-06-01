@@ -1,0 +1,1390 @@
+/* 与主控制台同宽，左侧功能条 + 主内容区 */
+.my-cases-workspace {
+  /* 与文书生成页面同宽 */
+  width: min(96vw, 1400px);
+  margin: 0 auto;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.my-cases-func-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 10px;
+  min-height: calc(100vh - 180px);
+  max-height: calc(100vh - 140px);
+  min-width: 0;
+}
+
+.my-cases-func-btn {
+  flex: 0 0 auto;
+  border: 1px solid rgba(108, 148, 219, 0.35);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.5);
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.12em;
+  min-height: 88px;
+}
+
+.my-cases-func-btn:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 113, 227, 0.5);
+}
+
+.my-cases-func-btn.active {
+  border-color: rgba(0, 0, 0, 0.55);
+  background: rgba(220, 234, 255, 0.85);
+  color: rgba(0, 0, 0, 0.98);
+  box-shadow: inset 0 0 0 1px rgba(108, 148, 219, 0.25);
+}
+
+.my-cases-content-wrap {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-cases-pane {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 案件页：顶栏与详情同一内容框，避免「按钮飘在详情外」的视觉断层 */
+#myCasesPaneCase.left-panel {
+  gap: 0;
+}
+
+.my-cases-case-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.28);
+  background: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.my-cases-case-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid rgba(108, 148, 219, 0.18);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.my-cases-case-page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 36px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.my-cases-case-page-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.78);
+  max-width: 520px;
+}
+
+.my-cases-pane.hidden {
+  display: none !important;
+}
+
+.my-cases-panel-head--simple {
+  justify-content: flex-start;
+}
+
+.my-cases-input {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid rgba(116, 153, 218, 0.35);
+  background: rgba(255, 255, 255, 0.75);
+  color: #000000;
+  outline: none;
+}
+
+.my-cases-input:focus {
+  border-color: rgba(0, 113, 227, 0.65);
+}
+
+.my-cases-empty-tip {
+  margin: 0;
+  padding: 20px 8px;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.my-cases-completeness {
+  padding: 12px 14px;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.24);
+  background: rgba(255, 255, 255, 0.55);
+  margin-bottom: 8px;
+}
+
+.my-cases-completeness-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.my-cases-completeness-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.my-cases-completeness-score {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.my-cases-completeness-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(108, 148, 219, 0.2);
+  overflow: hidden;
+}
+
+.my-cases-completeness-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6b9ae8, #3d6fd0);
+  transition: width 0.25s ease;
+}
+
+.my-cases-completeness-hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.my-cases-persist-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.88);
+  cursor: pointer;
+  user-select: none;
+}
+
+.my-cases-evidence-list-block {
+  margin-bottom: 14px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-cases-evidence-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 2px 8px;
+}
+
+.my-cases-evidence-empty {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.68);
+  padding: 10px 0;
+}
+
+.my-cases-evidence-card {
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.62);
+  padding: 10px 12px;
+}
+
+.my-cases-evidence-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #000000;
+}
+
+.my-cases-evidence-card-titleline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+}
+
+.my-cases-evidence-card-titleline strong {
+  min-width: 0;
+  word-break: break-word;
+}
+
+.my-cases-evidence-type {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(220, 234, 255, 0.7);
+}
+
+.my-cases-evidence-card-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.my-cases-evidence-snippet {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.my-cases-evidence-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.my-cases-evidence-action-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.my-cases-evidence-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.my-cases-evidence-file-link {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #0066cc;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
+  word-break: break-all;
+}
+
+.my-cases-evidence-file-link:hover {
+  color: #004f9f;
+}
+
+.my-cases-main {
+  min-height: 0;
+}
+
+.my-cases-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px 20px;
+}
+
+.my-cases-case-toolbar .my-cases-head-text {
+  flex: 1;
+  min-width: min(100%, 200px);
+}
+
+.my-cases-head-text {
+  flex: 1;
+  min-width: min(100%, 240px);
+}
+
+.my-cases-head-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 12px;
+  padding-top: 0;
+  min-width: 0;
+}
+
+.my-cases-evidence-head-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 10px;
+  padding-top: 4px;
+}
+
+.my-cases-evidence-export-btn {
+  border: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.my-cases-evidence-rev-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.82);
+  background: rgba(108, 148, 219, 0.22);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.my-cases-location-3cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.my-cases-location-select {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23132b56' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+@media (max-width: 520px) {
+  .my-cases-location-3cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.my-cases-add-evidence-btn {
+  border: none;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.my-cases-case-toolbar .my-cases-head-actions {
+  align-self: center;
+  padding-top: 2px;
+}
+
+.my-cases-new-case-trigger {
+  border: none;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.my-cases-case-select {
+  min-width: 180px;
+  max-width: 100%;
+  width: auto;
+  flex: 1 1 240px;
+  padding: 10px 36px 10px 14px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(108, 148, 219, 0.45);
+  border-radius: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23132b56' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  box-shadow: 0 1px 2px rgba(19, 43, 86, 0.06);
+}
+
+.my-cases-case-select:hover {
+  border-color: rgba(108, 148, 219, 0.65);
+  background-color: rgba(255, 255, 255, 0.88);
+}
+
+.my-cases-case-select:focus {
+  outline: none;
+  border-color: rgba(72, 118, 210, 0.85);
+  box-shadow: 0 0 0 3px rgba(108, 148, 219, 0.25);
+}
+
+.my-cases-dialog {
+  /* 显式居中：避免部分浏览器把 open 的 dialog 放在视口左上角 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  max-width: 440px;
+  width: min(440px, calc(100vw - 32px));
+  max-height: min(90vh, 720px);
+  background: transparent;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.my-cases-dialog:not([open]) {
+  display: none;
+}
+
+.my-cases-dialog::backdrop {
+  background: rgba(15, 31, 58, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.my-cases-dialog-inner {
+  padding: 24px 22px 22px;
+  max-height: min(calc(90vh - 24px), 696px);
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.32);
+  box-shadow:
+    0 20px 48px rgba(45, 78, 140, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.my-cases-evidence-dialog {
+  /* 左右分栏：上传 + 手动录入 */
+  width: min(960px, calc(100vw - 32px));
+  max-width: 960px;
+  max-height: min(92vh, 860px);
+}
+
+.my-cases-evidence-dialog .my-cases-dialog-inner {
+  /* 证据弹窗内容较多，适当加大留白与可滚动高度 */
+  padding: 28px 26px 24px;
+  max-height: min(calc(92vh - 24px), 836px);
+}
+
+.my-cases-evidence-dialog-form {
+  gap: 16px;
+}
+
+.my-cases-evidence-dialog-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .my-cases-evidence-dialog-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.my-cases-evidence-split-heading {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.my-cases-evidence-upload-col {
+  padding: 16px 16px 18px;
+  border-radius: 0;
+  background: rgba(108, 148, 219, 0.08);
+  border: 1px solid rgba(108, 148, 219, 0.22);
+}
+
+.my-cases-evidence-upload-hint {
+  margin: 0 0 14px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.my-cases-evidence-upload-btn {
+  border: none;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.my-cases-evidence-upload-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.my-cases-evidence-upload-filename {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.78);
+  word-break: break-all;
+}
+
+.my-cases-evidence-upload-status {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.my-cases-evidence-upload-status--error {
+  color: rgba(176, 48, 48, 0.95);
+}
+
+.my-cases-evidence-manual-col {
+  min-width: 0;
+}
+
+.my-cases-dialog-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+}
+
+.my-cases-dialog-desc {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.my-cases-dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.my-cases-dialog-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.my-cases-dialog-label-text {
+  font-size: 13px;
+}
+
+.my-cases-dialog-field {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.my-cases-dialog-error {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(176, 48, 48, 0.95);
+}
+
+.my-cases-dialog-error.hidden {
+  display: none !important;
+}
+
+.my-cases-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.my-cases-dialog-cancel,
+.my-cases-dialog-submit {
+  border: none;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.my-cases-dialog-submit {
+  font-weight: 600;
+}
+
+.my-cases-main-canvas {
+  flex: 1;
+  min-height: min(52vh, 520px);
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  background: rgba(255, 255, 255, 0.35);
+  overflow-y: auto;
+}
+
+.my-cases-evidence-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 4px 0 8px;
+}
+
+.my-cases-evidence-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+}
+
+.my-cases-file-label {
+  cursor: pointer;
+}
+
+.my-cases-file-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 0;
+}
+
+.my-cases-file-name {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.72);
+  flex: 1;
+  min-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.my-cases-ocr-btn {
+  border: none;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.my-cases-ocr-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.my-cases-ocr-btn:not(:disabled) {
+  opacity: 1;
+}
+
+.my-cases-no-case-hint {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.82);
+  background: rgba(255, 248, 220, 0.65);
+  border: 1px solid rgba(214, 180, 90, 0.35);
+  border-radius: 6px;
+}
+
+.my-cases-no-case-hint.hidden {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.my-cases-ocr-status {
+  margin: 0;
+  min-height: 1.25em;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.my-cases-ocr-status--error {
+  color: rgba(176, 48, 48, 0.95);
+}
+
+.my-cases-ocr-result {
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.28);
+  background: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.my-cases-ocr-result-title {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  border-bottom: 1px solid rgba(108, 148, 219, 0.18);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.my-cases-ocr-pre {
+  margin: 0;
+  flex: 1;
+  min-height: 160px;
+  padding: 14px 16px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: rgba(0, 0, 0, 0.92);
+  background: transparent;
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+}
+
+.my-cases-canvas-inner {
+  padding: 20px 22px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.my-cases-canvas-inner .my-cases-canvas-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.my-cases-canvas-inner .my-cases-canvas-meta {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.72);
+  margin-bottom: 16px;
+}
+
+.my-cases-canvas-placeholder {
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(108, 148, 219, 0.2);
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 13px;
+}
+
+.my-cases-canvas-inner--detail {
+  max-width: 720px;
+}
+
+.my-cases-detail-title {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.my-cases-detail-lead {
+  margin: 0 0 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.92);
+  line-height: 1.45;
+}
+
+.my-cases-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 18px;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+.my-cases-detail-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px 16px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(108, 148, 219, 0.14);
+}
+
+.my-cases-detail-row:last-child {
+  border-bottom: none;
+}
+
+.my-cases-detail-label {
+  color: rgba(0, 0, 0, 0.62);
+  font-weight: 500;
+}
+
+.my-cases-detail-value {
+  color: #000000;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.my-cases-detail-block {
+  margin-bottom: 16px;
+}
+
+.my-cases-detail-block:last-child {
+  margin-bottom: 0;
+}
+
+.my-cases-detail-block-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.my-cases-detail-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-cases-detail-text--multiline {
+  white-space: pre-wrap;
+}
+
+/* 案件档案：劳动者/用人单位档案区块 */
+.my-cases-archive-block {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(108, 148, 219, 0.32);
+}
+
+.my-cases-archive-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.my-cases-archive-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.my-cases-archive-add-btn {
+  border: none;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.my-cases-archive-card {
+  width: 100%;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.62);
+  padding: 12px 14px;
+  cursor: pointer;
+}
+
+.my-cases-archive-card:hover {
+  border-color: rgba(0, 113, 227, 0.35);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.my-cases-archive-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.my-cases-archive-card-meta {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.my-cases-archive-empty {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+  padding: 10px 0 6px;
+}
+
+.my-cases-archive-reserved-space {
+  height: 80px;
+}
+
+/* 添加劳动者档案：两张正方形选择卡 */
+.my-cases-archive-choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.my-cases-archive-choice-card {
+  border: 1px solid rgba(108, 148, 219, 0.25);
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 0;
+  padding: 14px 12px;
+  min-height: 140px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  text-align: left;
+}
+
+.my-cases-archive-choice-card strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.my-cases-archive-choice-card span {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.my-cases-archive-choice-card:hover {
+  border-color: rgba(0, 113, 227, 0.45);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.my-cases-archive-detail {
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.88);
+  overflow: auto;
+  max-height: min(70vh, 640px);
+}
+
+.my-cases-archive-detail dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 6px 12px;
+}
+
+.my-cases-archive-detail dt {
+  margin: 0;
+  font-weight: 650;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.my-cases-archive-detail dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.my-cases-archive-editable {
+  cursor: text;
+  border: 1px dashed transparent;
+  padding: 2px 4px;
+}
+
+.my-cases-archive-editable:hover {
+  border-color: rgba(108, 148, 219, 0.45);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 520px) {
+  .my-cases-detail-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .my-cases-detail-label {
+    font-size: 12px;
+  }
+
+  .my-cases-archive-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-cases-archive-detail dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  .my-cases-workspace {
+    grid-template-columns: 1fr;
+    width: min(96vw, 720px);
+    gap: 14px;
+  }
+
+  .my-cases-func-nav {
+    flex-direction: row;
+    justify-content: center;
+    min-height: auto;
+    max-height: none;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .my-cases-func-btn {
+    writing-mode: horizontal-tb;
+    letter-spacing: normal;
+    flex: 1;
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+
+  .my-cases-head-actions {
+    width: 100%;
+    padding-top: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .my-cases-new-case-trigger {
+    flex: 0 0 auto;
+  }
+
+  .my-cases-case-select {
+    flex: 1 1 180px;
+    min-width: 0;
+    width: auto;
+  }
+
+  .my-cases-main-canvas {
+    min-height: 40vh;
+  }
+}
+
+/* 证据时间线 */
+.my-cases-timeline-body {
+  flex: 1;
+  min-height: 0;
+  padding: 14px 16px 16px;
+}
+
+.my-cases-timeline-canvas {
+  width: 100%;
+  height: min(64vh, 660px);
+  min-height: 360px;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+/* 证据关系网：必须用 flex + min-height(vh)，避免子元素 height:100% 得不到高度导致 neo4jd3 初始化成一条细线 */
+.my-cases-graph-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+}
+
+.my-cases-graph-canvas {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  min-height: max(420px, 52vh);
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.my-cases-graph-inner {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  min-height: max(380px, 48vh);
+  position: relative;
+}
+
+.my-cases-graph-inner svg {
+  display: block;
+}
+
+.my-cases-graph-status {
+  flex-shrink: 0;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.my-cases-graph-status:empty {
+  display: none;
+  margin: 0;
+}
+
+.my-cases-graph-status--error {
+  color: rgba(176, 48, 48, 0.95);
+}
+
+.my-cases-graph-detail {
+  flex-shrink: 0;
+  margin-top: 12px;
+  padding: 14px 16px;
+  min-height: 120px;
+  max-height: min(240px, 32vh);
+  overflow: auto;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.my-cases-graph-detail__placeholder {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.my-cases-graph-detail__title {
+  font-size: 15px;
+  font-weight: 650;
+  color: rgba(0, 0, 0, 0.95);
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.my-cases-graph-detail__dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.my-cases-graph-detail__dl dt {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.72);
+  white-space: nowrap;
+}
+
+.my-cases-graph-detail__dl dd {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.88);
+  word-break: break-word;
+}
+
+/* 须与 .my-cases-dialog 基础宽度解耦：内层曾写死 560px 而 dialog 仅 440px，居中后左右会被 overflow:hidden 裁掉 */
+.my-cases-evidence-revisions-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-width: 560px;
+}
+
+.my-cases-evidence-revisions-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  max-height: min(86vh, 720px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.my-cases-evidence-revisions-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.62);
+  word-break: break-word;
+}
+
+.my-cases-evidence-revisions-inner .my-cases-dialog-title,
+.my-cases-evidence-revisions-inner .my-cases-dialog-desc {
+  min-width: 0;
+  word-break: break-word;
+}
+
+.my-cases-evidence-revisions-list {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 120px;
+  max-height: 50vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.my-cases-evidence-revision-row {
+  padding: 12px 14px;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.25);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.my-cases-evidence-revision-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.my-cases-evidence-revision-meta {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.my-cases-evidence-revision-snapshot {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.85);
+  max-height: 160px;
+  overflow: auto;
+}
+
+.my-cases-evidence-viewer-dialog {
+  width: min(1100px, calc(100vw - 28px));
+  max-width: 1100px;
+  max-height: min(94vh, 920px);
+}
+
+.my-cases-evidence-viewer-inner {
+  padding: 18px 18px 14px;
+  max-height: min(calc(94vh - 24px), 896px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.my-cases-evidence-viewer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.my-cases-evidence-viewer-head .my-cases-dialog-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.my-cases-evidence-viewer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.my-cases-evidence-viewer-body {
+  flex: 1;
+  min-height: 0;
+  border-radius: 0;
+  border: 1px solid rgba(108, 148, 219, 0.22);
+  background: rgba(248, 251, 255, 0.9);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-cases-evidence-viewer-frame {
+  width: 100%;
+  height: min(76vh, 760px);
+  border: none;
+  background: #fff;
+}
+
+.my-cases-evidence-viewer-image {
+  width: 100%;
+  height: min(76vh, 760px);
+  object-fit: contain;
+  background: #fff;
+}
+
+.my-cases-evidence-viewer-fallback {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.78);
+  text-align: center;
+}

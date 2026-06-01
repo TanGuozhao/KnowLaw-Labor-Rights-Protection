@@ -1,0 +1,330 @@
+:root {
+  /* 固定 PC 版式宽度：与 viewport meta width=1280 对齐 */
+  --site-pc-width: 1280px;
+  /* Apple-inspired palette (DESIGN.md) */
+  --text: #1d1d1f;
+  --text-secondary: rgba(0, 0, 0, 0.8);
+  --text-tertiary: rgba(0, 0, 0, 0.48);
+  --muted: rgba(0, 0, 0, 0.48);
+  --apple-blue: #0071e3;
+  --link-blue: #0066cc;
+  --link-blue-dark-bg: #2997ff;
+  --focus-color: #0071e3;
+  --page-bg: #f5f5f7;
+  --surface: #ffffff;
+  --pure-black: #000000;
+  --hairline: rgba(0, 0, 0, 0.04);
+  --nav-glass: rgba(0, 0, 0, 0.8);
+  --filter-btn-bg: #fafafc;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --shadow-card: 3px 5px 30px 0 rgba(0, 0, 0, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: var(--site-pc-width);
+  overflow-x: auto;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  color: var(--text);
+  background: var(--page-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(1.06) saturate(0.82);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: transparent;
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  /* 与 html 的 --site-pc-width 对齐，避免菜单变多后在 980px 内容区被挤压错位 */
+  padding: 0 max(22px, calc((100% - var(--site-pc-width)) / 2));
+  min-height: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 0;
+  background: var(--nav-glass);
+  border: none;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: none;
+}
+
+.brand {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  color: #ffffff;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.brand sup {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+  vertical-align: super;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 26px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+  line-height: 1.33;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  z-index: 1;
+}
+
+.menu li {
+  flex: 0 0 auto;
+}
+
+.menu a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.16s ease;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+.menu a[aria-current="page"] {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Primary CTA — Apple blue (content + legacy .liquid-glass) */
+.liquid-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  color: #ffffff;
+  text-decoration: none;
+  background: var(--apple-blue);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 2.41;
+  letter-spacing: normal;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: filter 0.16s ease, background 0.16s ease;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.liquid-glass:hover {
+  filter: brightness(1.06);
+}
+
+.liquid-glass:active {
+  filter: brightness(0.94);
+}
+
+.nav-btn {
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 2.41;
+  letter-spacing: normal;
+  padding: 8px 15px;
+  border-radius: 0;
+  border: 1px solid transparent;
+  text-decoration: none;
+  background: transparent;
+  transition: filter 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+button.nav-btn {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.nav-btn--primary {
+  color: #ffffff;
+  background: var(--apple-blue);
+}
+
+.nav-btn--primary:hover {
+  filter: brightness(1.06);
+}
+
+.nav-btn--ghost {
+  color: #ffffff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.nav-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 导航栏内操作按钮与 .menu 文案尺度一致（避免沿用内容区 CTA 的 17px / 大行高） */
+.navbar .nav-btn {
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+  line-height: 1.4;
+  padding: 7px 14px;
+  min-height: 0;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.nav-user {
+  max-width: 220px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  letter-spacing: -0.12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a:focus-visible,
+button:focus-visible,
+.nav-btn:focus-visible,
+.liquid-glass:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-rise {
+  opacity: 0;
+  animation: fade-rise 0.8s ease-out forwards;
+}
+
+.animate-fade-rise-delay {
+  opacity: 0;
+  animation: fade-rise 0.8s ease-out 0.2s forwards;
+}
+
+.animate-fade-rise-delay-2 {
+  opacity: 0;
+  animation: fade-rise 0.8s ease-out 0.4s forwards;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1 0 auto;
+}
+
+.site-record {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 20px 16px 28px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.45);
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.12px;
+}
+
+.site-record a {
+  color: var(--link-blue);
+  text-decoration: none;
+}
+
+.site-record a:hover {
+  text-decoration: underline;
+}

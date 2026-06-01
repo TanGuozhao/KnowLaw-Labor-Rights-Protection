@@ -1,0 +1,243 @@
+.consult-faqs-workspace {
+  width: min(96vw, 1180px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: calc(100vh - 170px);
+}
+
+.consult-faqs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.consult-faqs-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.consult-faqs-back {
+  font-size: 14px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.consult-faqs-back:hover {
+  text-decoration: underline;
+}
+
+.consult-faqs-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.consult-faqs-sort {
+  display: flex;
+  gap: 8px;
+}
+
+.consult-faqs-sort-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.consult-faqs-sort-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #367fd2, #2b66ad);
+}
+
+.consult-faqs-search-wrap {
+  grid-column: 2;
+  min-width: 360px;
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.consult-faqs-search-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--text);
+  background: #fafafa;
+  outline: none;
+}
+
+.consult-faqs-search-input:focus {
+  border-color: #4f8ed8;
+}
+
+.consult-faqs-search-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.consult-faqs-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  height: 640px;
+}
+
+.consult-faqs-item {
+  border-radius: 0;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  padding: 12px 14px;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.consult-faqs-item:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: #fafafa;
+}
+
+.consult-faqs-item:focus-visible {
+  outline: 2px solid rgba(68, 127, 209, 0.72);
+  outline-offset: 2px;
+}
+
+.consult-faqs-q,
+.consult-faqs-a {
+  margin: 0;
+  color: #000000;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.consult-faqs-q {
+  font-size: 16px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 2;
+}
+
+.consult-faqs-a {
+  margin-top: 4px;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 2;
+}
+
+.consult-faqs-q-detail,
+.consult-faqs-a-detail {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #000000;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.consult-faqs-q-detail {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.consult-faqs-a-detail {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.consult-faqs-empty {
+  border-radius: 0;
+  padding: 18px 12px;
+  background: #fafafa;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.consult-faqs-pagination {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.consult-faqs-page-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.consult-faqs-page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.consult-faqs-page-indicator {
+  min-width: 120px;
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+}
+
+@media (max-width: 880px) {
+  .consult-faqs-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .consult-faqs-search-wrap {
+    grid-column: auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .consult-faqs-sort {
+    flex-wrap: wrap;
+  }
+
+  .consult-faqs-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+    min-height: 0;
+  }
+}

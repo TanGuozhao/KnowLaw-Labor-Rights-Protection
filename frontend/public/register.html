@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>注册 - 知法劳动维权法律服务平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/register.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="guest-link"
+      data-navbar-active=""
+      data-navbar-menu="home:首页:/|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+      data-navbar-guest-text="去登录"
+      data-navbar-guest-href="/login"
+    ></div>
+
+    <section class="register-hero">
+      <div class="register-panel-wrap animate-fade-rise-delay">
+        <section class="register-panel" aria-label="注册面板">
+          <h1 class="panel-title">创建账号</h1>
+          <p class="panel-subtitle">注册后可发起咨询、跟踪案件进展与管理法律服务。</p>
+
+          <form class="register-form" id="registerForm">
+            <div class="field-grid">
+              <div>
+                <label class="field-label" for="phone">手机号</label>
+                <input class="field-input" id="phone" name="phone" type="text" maxlength="11" placeholder="请输入11位手机号（与邮箱二选一）">
+              </div>
+              <div>
+                <label class="field-label" for="email">邮箱</label>
+                <input class="field-input" id="email" name="email" type="email" placeholder="请输入常用邮箱（与手机号二选一）">
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="name">姓名</label>
+              <input class="field-input" id="name" name="name" type="text" placeholder="请输入真实姓名" required>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label class="field-label" for="password">登录密码</label>
+                <input class="field-input" id="password" name="password" type="password" minlength="6" placeholder="至少6位字符" required>
+              </div>
+              <div>
+                <label class="field-label" for="confirmPassword">确认密码</label>
+                <input class="field-input" id="confirmPassword" name="confirmPassword" type="password" minlength="6" placeholder="请再次输入密码" required>
+              </div>
+            </div>
+
+            <label class="agreement" for="agreePolicy">
+              <input id="agreePolicy" name="agreePolicy" type="checkbox" required>
+              我已阅读并同意《用户协议》与《隐私政策》
+            </label>
+
+            <div class="register-error" id="registerError"></div>
+            <button type="submit" class="liquid-glass register-submit" id="submitBtn">注册并登录</button>
+            <p class="form-foot">
+              已有账号？<a href="/login">立即登录</a>
+            </p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/register.js"></script>
+</body>
+</html>

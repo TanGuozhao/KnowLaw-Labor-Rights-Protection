@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>档案管理 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/my-cases.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="rights-management"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|rights-management:档案管理:./rights-management.html"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay my-cases-workspace" aria-label="档案管理">
+      <nav class="panel my-cases-func-nav" aria-label="功能切换">
+        <button type="button" class="my-cases-func-btn active" data-panel="case" aria-pressed="true">案件档案</button>
+        <button type="button" class="my-cases-func-btn" data-panel="evidence" aria-pressed="false">证据档案</button>
+        <button type="button" class="my-cases-func-btn" data-panel="timeline" aria-pressed="false">时间线</button>
+        <button type="button" class="my-cases-func-btn" data-panel="graph" aria-pressed="false">证据网络</button>
+      </nav>
+      <div class="my-cases-content-wrap">
+        <div id="myCasesPaneCase" class="panel left-panel my-cases-pane">
+          <div class="my-cases-case-shell">
+            <header class="my-cases-case-toolbar" aria-label="案件页顶栏">
+              <div class="my-cases-head-text">
+                <h1 class="my-cases-case-page-title">案件档案管理</h1>
+              </div>
+              <div class="my-cases-head-actions">
+                <button type="button" class="liquid-glass my-cases-new-case-trigger" id="newCaseOpenBtn">新建案件档案</button>
+                <select id="caseSelect" class="my-cases-case-select" aria-label="切换当前维权案件"></select>
+              </div>
+            </header>
+            <div class="my-cases-main-canvas" id="myCasesMainCanvas" aria-label="当前案件详情内容区" aria-live="polite"></div>
+          </div>
+        </div>
+        <div id="myCasesPaneEvidence" class="panel left-panel my-cases-pane hidden">
+          <div class="panel-head my-cases-panel-head">
+            <div class="my-cases-head-text">
+              <h1>证据档案管理</h1>
+              <p>支持图片、PDF、聊天记录截图、Word、Excel 等；在「添加证据」中上传后由专用模型识别并入库，也可手动填写。</p>
+            </div>
+            <div class="my-cases-head-actions">
+              <button type="button" class="liquid-glass my-cases-new-case-trigger" id="newEvidenceOpenBtn">新建证据档案</button>
+            </div>
+          </div>
+          <div class="my-cases-evidence-body">
+            <div class="my-cases-completeness" id="evidenceCompleteness" aria-label="材料完善度">
+              <div class="my-cases-completeness-head"><span class="my-cases-completeness-label">材料完善度</span><span id="evidenceCompletenessScore" class="my-cases-completeness-score">—</span></div>
+              <div class="my-cases-completeness-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="evidenceCompletenessTrack"><div class="my-cases-completeness-fill" id="evidenceCompletenessFill" style="width:0%"></div></div>
+              <p id="evidenceCompletenessHint" class="my-cases-completeness-hint"></p>
+            </div>
+            <p id="evidenceNoCaseHint" class="my-cases-no-case-hint hidden" role="note"></p>
+            <p id="evidenceOcrStatus" class="my-cases-ocr-status" role="status"></p>
+            <section class="my-cases-evidence-list-block" aria-labelledby="evidenceListTitle"><h3 id="evidenceListTitle" class="my-cases-ocr-result-title">本案证据列表</h3><div id="evidenceListEl" class="my-cases-evidence-list"></div></section>
+          </div>
+        </div>
+        <div id="myCasesPaneTimeline" class="panel left-panel my-cases-pane hidden"><div class="panel-head my-cases-panel-head"><div class="my-cases-head-text"><h1>证据时间线</h1><p>将本案证据按时间顺序生成图谱展示。</p></div></div><div class="my-cases-timeline-body"><div id="myCasesTimelineCanvas" class="my-cases-timeline-canvas" aria-label="证据时间线图谱"></div></div></div>
+        <div id="myCasesPaneGraph" class="panel left-panel my-cases-pane hidden"><div class="panel-head my-cases-panel-head"><div class="my-cases-head-text"><h1>证据关系网</h1><p>结合案件案由、诉求、案情与各份证据文本，由专用模型抽取实体与关系；同案重复实体自动合并。打开本页时会补扫未更新的内容。</p></div></div><div class="my-cases-graph-body"><div id="myCasesGraphCanvas" class="my-cases-graph-canvas" aria-label="证据关系网图谱"></div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="my-cases-dialog" id="newCaseDialog" aria-labelledby="newCaseDialogTitle"><div class="my-cases-dialog-inner"><h2 id="newCaseDialogTitle" class="my-cases-dialog-title">新建案件档案</h2><p class="my-cases-dialog-desc">仅需填写案件名称即可创建；劳动者与用人单位档案可在下方详情区补充。</p><form id="newCaseForm" class="my-cases-dialog-form"><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">案件名称（必填）</span><input type="text" id="newCaseName" class="my-cases-input my-cases-dialog-field" required placeholder="如：张三与某公司工资争议" autocomplete="off"></label><p id="newCaseDialogError" class="my-cases-dialog-error hidden" role="alert"></p><div class="my-cases-dialog-actions"><button type="button" class="liquid-glass my-cases-dialog-cancel" id="newCaseDialogCancel">取消</button><button type="submit" class="liquid-glass my-cases-dialog-submit" id="newCaseDialogSubmit">创建</button></div></form></div></dialog>
+  <dialog class="my-cases-dialog my-cases-evidence-dialog" id="addEvidenceDialog" aria-labelledby="addEvidenceDialogTitle"><div class="my-cases-dialog-inner"><h2 id="addEvidenceDialogTitle" class="my-cases-dialog-title">添加证据</h2><p class="my-cases-dialog-desc">左侧上传文件后由<strong>证据专用模型</strong>识别类型并自动入库；右侧可手动填写或修改后保存。</p><form id="addEvidenceForm" class="my-cases-dialog-form my-cases-evidence-dialog-form"><div class="my-cases-evidence-dialog-split"><div class="my-cases-evidence-upload-col" aria-label="上传证据文件"><h3 class="my-cases-evidence-split-heading">上传文件</h3><p class="my-cases-evidence-upload-hint">支持图片、PDF、Word、Excel、TXT、聊天记录截图等。</p><input type="file" id="addEvidenceFileInput" class="hidden" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,.jpg,.jpeg,.png,.webp,.gif,.bmp,.pdf,.docx,.xlsx,.txt"><button type="button" class="liquid-glass my-cases-evidence-upload-btn" id="addEvidencePickFileBtn">选择文件并识别</button><p id="addEvidenceUploadFileName" class="my-cases-evidence-upload-filename" aria-live="polite">未选择文件</p><p id="addEvidenceUploadStatus" class="my-cases-evidence-upload-status" role="status"></p></div><div class="my-cases-evidence-manual-col" aria-label="手动录入证据信息"><h3 class="my-cases-evidence-split-heading">手动录入</h3><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">证据名称（必填）</span><input type="text" id="addEvidenceName" class="my-cases-input my-cases-dialog-field" required placeholder="如：劳动合同/工资流水/解除通知书等"></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">证据类型（必选）</span><select id="addEvidenceType" class="my-cases-input my-cases-dialog-field" required></select></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">证据描述</span><textarea id="addEvidenceDescription" class="my-cases-input my-cases-dialog-field" placeholder="可填写关键要点、对应争议、页码等" rows="3"></textarea></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">获取/来源</span><input type="text" id="addEvidenceSource" class="my-cases-input my-cases-dialog-field" placeholder="如：公司提供/本人保存/系统截图"></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">相关地点（可选）</span><div class="my-cases-location-3cols" aria-label="地点省市区三级联动"><select id="addEvidenceProvince" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择省" required="false"><option value="">请选择省</option></select><select id="addEvidenceCity" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择市" disabled><option value="">请选择市</option></select><select id="addEvidenceDistrict" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择区" disabled><option value="">请选择区</option></select></div><input type="text" id="addEvidenceDetailAddress" class="my-cases-input my-cases-dialog-field" aria-label="详细地址" placeholder="详细地址（门牌/街道/小区等，可选）"></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">相关时间（可选）</span><div class="my-cases-location-3cols" aria-label="相关时间年月日"><select id="addEvidenceYear" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择年"><option value="">年</option></select><select id="addEvidenceMonth" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择月"><option value="">月</option></select><select id="addEvidenceDay" class="my-cases-input my-cases-dialog-field my-cases-location-select" aria-label="选择日"><option value="">日</option></select></div></label><label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">备注（可选）</span><textarea id="addEvidenceNote" class="my-cases-input my-cases-dialog-field" placeholder="补充说明或争点备注" rows="2"></textarea></label></div></div><p id="addEvidenceDialogError" class="my-cases-dialog-error hidden" role="alert"></p><div class="my-cases-dialog-actions"><button type="button" class="liquid-glass my-cases-dialog-cancel" id="addEvidenceDialogCancel">取消</button><button type="submit" class="liquid-glass my-cases-dialog-submit" id="addEvidenceDialogSubmit">确认添加</button></div></form></div></dialog>
+  <dialog class="my-cases-dialog my-cases-evidence-viewer-dialog" id="evidenceViewerDialog" aria-labelledby="evidenceViewerTitle"><div class="my-cases-dialog-inner my-cases-evidence-viewer-inner"><div class="my-cases-evidence-viewer-head"><h2 id="evidenceViewerTitle" class="my-cases-dialog-title">证据预览</h2><div class="my-cases-evidence-viewer-actions"><button type="button" class="liquid-glass my-cases-dialog-cancel" id="evidenceViewerOpenNewBtn">新窗口打开</button><button type="button" class="liquid-glass my-cases-dialog-submit" id="evidenceViewerDownloadBtn">下载</button><button type="button" class="liquid-glass my-cases-dialog-cancel" id="evidenceViewerCloseBtn">关闭</button></div></div><p id="evidenceViewerHint" class="my-cases-dialog-desc"></p><div class="my-cases-evidence-viewer-body"><img id="evidenceViewerImage" class="my-cases-evidence-viewer-image hidden" alt="证据图片预览"><iframe id="evidenceViewerFrame" class="my-cases-evidence-viewer-frame" title="证据预览窗口"></iframe><div id="evidenceViewerFallback" class="my-cases-evidence-viewer-fallback hidden">该文件格式暂不支持内嵌预览，请使用“新窗口打开”或“下载”查看。</div></div></div></dialog>
+  <dialog class="my-cases-dialog my-cases-evidence-revisions-dialog" id="evidenceRevisionsDialog" aria-labelledby="evidenceRevisionsTitle"><div class="my-cases-dialog-inner my-cases-evidence-revisions-inner"><h2 id="evidenceRevisionsTitle" class="my-cases-dialog-title">历史版本与修订</h2><p id="evidenceRevisionsSubtitle" class="my-cases-dialog-desc"></p><p class="my-cases-evidence-revisions-hint">文件「上传」覆盖前会自动保留上一版附件；「编辑」保存时会保留上一版登记信息。</p><div id="evidenceRevisionsList" class="my-cases-evidence-revisions-list" role="list"></div><div class="my-cases-dialog-actions"><button type="button" class="liquid-glass my-cases-dialog-cancel" id="evidenceRevisionsCloseBtn">关闭</button></div></div></dialog>
+
+  <dialog class="my-cases-dialog" id="laborerAddDialog" aria-labelledby="laborerAddDialogTitle">
+    <div class="my-cases-dialog-inner">
+      <h2 id="laborerAddDialogTitle" class="my-cases-dialog-title">添加当事人档案</h2>
+      <p class="my-cases-dialog-desc">大多数情况下可直接导入个人中心信息；若为他人，可新建完整档案。</p>
+      <div class="my-cases-archive-choice-grid" role="list">
+        <button type="button" class="my-cases-archive-choice-card" id="laborerImportMeCard" role="listitem">
+          <strong>导入个人信息</strong>
+          <span>从个人中心一键填充</span>
+        </button>
+        <button type="button" class="my-cases-archive-choice-card" id="laborerCreateNewCard" role="listitem">
+          <strong>新建个人档案</strong>
+          <span>手动填写全部字段</span>
+        </button>
+      </div>
+      <div class="my-cases-dialog-actions">
+        <button type="button" class="liquid-glass my-cases-dialog-cancel" id="laborerAddDialogClose">关闭</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="my-cases-dialog" id="newEvidenceChoiceDialog" aria-labelledby="newEvidenceChoiceDialogTitle">
+    <div class="my-cases-dialog-inner">
+      <h2 id="newEvidenceChoiceDialogTitle" class="my-cases-dialog-title">新建证据档案</h2>
+      <p class="my-cases-dialog-desc">可自动解析文件内容，或手动填写证据信息（源文件可选）。</p>
+      <div class="my-cases-archive-choice-grid" role="list">
+        <button type="button" class="my-cases-archive-choice-card" id="newEvidenceAutoCard" role="listitem">
+          <strong>自动解析</strong>
+          <span>上传文件并自动识别类型</span>
+        </button>
+        <button type="button" class="my-cases-archive-choice-card" id="newEvidenceManualCard" role="listitem">
+          <strong>手动填写</strong>
+          <span>手动录入后保存证据档案</span>
+        </button>
+      </div>
+      <div class="my-cases-dialog-actions">
+        <button type="button" class="liquid-glass my-cases-dialog-cancel" id="newEvidenceChoiceDialogClose">关闭</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="my-cases-dialog my-cases-evidence-revisions-dialog" id="evidenceDetailDialog" aria-labelledby="evidenceDetailTitle">
+    <div class="my-cases-dialog-inner my-cases-evidence-revisions-inner">
+      <h2 id="evidenceDetailTitle" class="my-cases-dialog-title">证据详情</h2>
+      <p id="evidenceDetailSubtitle" class="my-cases-dialog-desc"></p>
+      <div id="evidenceDetailBody" class="my-cases-archive-detail"></div>
+      <div class="my-cases-dialog-actions">
+        <button type="button" class="liquid-glass my-cases-dialog-cancel" id="evidenceDetailViewSourceBtn">查看源文件</button>
+        <button type="button" class="liquid-glass my-cases-dialog-submit" id="evidenceDetailImportSourceBtn">导入源文件并自动解析</button>
+        <button type="button" class="liquid-glass my-cases-dialog-cancel" id="evidenceDetailCloseBtn">关闭</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="my-cases-dialog" id="laborerFormDialog" aria-labelledby="laborerFormDialogTitle">
+    <div class="my-cases-dialog-inner">
+      <h2 id="laborerFormDialogTitle" class="my-cases-dialog-title">新建当事人档案</h2>
+      <p class="my-cases-dialog-desc">请填写劳动者完整信息。必填项：姓名。</p>
+      <form id="laborerForm" class="my-cases-dialog-form">
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">姓名（必填）</span><input id="laborerName" class="my-cases-input my-cases-dialog-field" required maxlength="50" placeholder="姓名"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">与本人关系</span><input id="laborerRelationToMe" class="my-cases-input my-cases-dialog-field" maxlength="40" placeholder="如：本人/上司/同事/家属（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">性别</span><select id="laborerGender" class="my-cases-input my-cases-dialog-field"><option value="">请选择</option><option value="男">男</option><option value="女">女</option></select></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">手机号</span><input id="laborerPhone" class="my-cases-input my-cases-dialog-field" maxlength="32" placeholder="手机号码"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">身份证号</span><input id="laborerIdCard" class="my-cases-input my-cases-dialog-field" maxlength="32" placeholder="身份证号（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">邮箱</span><input id="laborerEmail" class="my-cases-input my-cases-dialog-field" maxlength="120" placeholder="邮箱（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">地区</span><input id="laborerRegion" class="my-cases-input my-cases-dialog-field" maxlength="120" placeholder="省市区（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">家庭住址</span><textarea id="laborerHomeAddr" class="my-cases-input my-cases-dialog-field" rows="3" maxlength="200" placeholder="详细住址（可选）"></textarea></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">职业</span><input id="laborerOccupation" class="my-cases-input my-cases-dialog-field" maxlength="80" placeholder="职业（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">学校</span><input id="laborerSchool" class="my-cases-input my-cases-dialog-field" maxlength="120" placeholder="学校（可选）"></label>
+        <p id="laborerFormError" class="my-cases-dialog-error hidden" role="alert"></p>
+        <div class="my-cases-dialog-actions">
+          <button type="button" class="liquid-glass my-cases-dialog-cancel" id="laborerFormCancel">取消</button>
+          <button type="submit" class="liquid-glass my-cases-dialog-submit" id="laborerFormSubmit">保存</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="my-cases-dialog" id="employerFormDialog" aria-labelledby="employerFormDialogTitle">
+    <div class="my-cases-dialog-inner">
+      <h2 id="employerFormDialogTitle" class="my-cases-dialog-title">添加用人单位档案</h2>
+      <p class="my-cases-dialog-desc">请填写用人单位完整信息。必填项：单位名称。</p>
+      <form id="employerForm" class="my-cases-dialog-form">
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">单位名称（必填）</span><input id="employerRespondent" class="my-cases-input my-cases-dialog-field" required maxlength="200" placeholder="公司或主体名称"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">法定代表人/主要负责人</span><input id="employerLegalRep" class="my-cases-input my-cases-dialog-field" maxlength="80" placeholder="姓名（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">联系人</span><input id="employerContactName" class="my-cases-input my-cases-dialog-field" maxlength="80" placeholder="联系人姓名（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">职务</span><input id="employerContactJobTitle" class="my-cases-input my-cases-dialog-field" maxlength="80" placeholder="职务（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">联系电话</span><input id="employerContactPhone" class="my-cases-input my-cases-dialog-field" maxlength="32" placeholder="联系电话（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">注册地址</span><input id="employerRegisteredAddress" class="my-cases-input my-cases-dialog-field" maxlength="200" placeholder="注册地址（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">实际办公/经营地点</span><input id="employerBusinessRegion" class="my-cases-input my-cases-dialog-field" maxlength="200" placeholder="省市区（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">实际办公/经营详细地址</span><input id="employerBusinessDetail" class="my-cases-input my-cases-dialog-field" maxlength="200" placeholder="街道门牌等（可选）"></label>
+        <label class="my-cases-dialog-label"><span class="my-cases-dialog-label-text">邮编</span><input id="employerPostalCode" class="my-cases-input my-cases-dialog-field" maxlength="12" placeholder="邮编（可选）"></label>
+        <p id="employerFormError" class="my-cases-dialog-error hidden" role="alert"></p>
+        <div class="my-cases-dialog-actions">
+          <button type="button" class="liquid-glass my-cases-dialog-cancel" id="employerFormCancel">取消</button>
+          <button type="submit" class="liquid-glass my-cases-dialog-submit" id="employerFormSubmit">保存</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="my-cases-dialog" id="archiveDetailDialog" aria-labelledby="archiveDetailTitle">
+    <div class="my-cases-dialog-inner">
+      <h2 id="archiveDetailTitle" class="my-cases-dialog-title">档案详情</h2>
+      <p id="archiveDetailSubtitle" class="my-cases-dialog-desc"></p>
+      <div id="archiveDetailBody" class="my-cases-archive-detail"></div>
+      <div class="my-cases-dialog-actions">
+        <button type="button" class="liquid-glass my-cases-dialog-cancel" id="archiveDetailClose">关闭</button>
+      </div>
+    </div>
+  </dialog>
+  <link rel="stylesheet" href="./assets/vendor/neo4jd3/css/neo4jd3.css">
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="./assets/vendor/neo4jd3/js/neo4jd3.js"></script>
+  <script type="module" src="./assets/js/my-cases.js"></script>
+</body>
+</html>

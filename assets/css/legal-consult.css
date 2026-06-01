@@ -1,0 +1,521 @@
+.legal-consult-workspace {
+  grid-template-columns: minmax(220px, 0.88fr) minmax(360px, 2.1fr) minmax(260px, 1fr);
+  width: min(96vw, 1400px);
+  margin: 0 auto;
+  align-items: stretch;
+  gap: 16px;
+  min-height: calc(100vh - 100px);
+}
+
+.legal-consult-sessions {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: none;
+  height: 100%;
+  padding: 14px;
+  min-width: 0;
+}
+
+.legal-consult-sessions-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.legal-consult-sessions-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.legal-consult-new-btn {
+  border: none;
+  border-radius: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+.legal-consult-sessions-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+.legal-consult-session-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 10px 10px 10px 12px;
+  border-radius: 0;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.legal-consult-session-item:hover {
+  background: #fafafa;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.legal-consult-session-item.active {
+  border-color: #0071e3;
+  background: #e8f4ff;
+}
+
+.legal-consult-session-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.legal-consult-session-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.legal-consult-session-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.legal-consult-session-del {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.38);
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.legal-consult-session-del:hover {
+  color: rgba(176, 48, 48, 0.9);
+  background: rgba(255, 220, 220, 0.35);
+}
+
+.legal-consult-chat-shell {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-consult-chat-shell .chat-panel {
+  flex: 1;
+  min-height: 280px;
+}
+
+.legal-consult-chat-shell .chat-item .message-content {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #000000;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.legal-consult-chat-shell .chat-item .message-plain {
+  white-space: pre-wrap;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown > :first-child {
+  margin-top: 0;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown p,
+.legal-consult-chat-shell .chat-item .message-markdown ul,
+.legal-consult-chat-shell .chat-item .message-markdown ol,
+.legal-consult-chat-shell .chat-item .message-markdown blockquote,
+.legal-consult-chat-shell .chat-item .message-markdown pre {
+  margin: 0.55em 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown hr {
+  display: none;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown h1,
+.legal-consult-chat-shell .chat-item .message-markdown h2,
+.legal-consult-chat-shell .chat-item .message-markdown h3,
+.legal-consult-chat-shell .chat-item .message-markdown h4,
+.legal-consult-chat-shell .chat-item .message-markdown h5,
+.legal-consult-chat-shell .chat-item .message-markdown h6 {
+  margin: 0.45em 0 0.35em;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #000000;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown ul,
+.legal-consult-chat-shell .chat-item .message-markdown ol {
+  padding-left: 1.35em;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown li + li {
+  margin-top: 0.22em;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown blockquote {
+  border-left: 3px solid rgba(0, 113, 227, 0.45);
+  padding: 0.2em 0 0.2em 0.85em;
+  color: rgba(0, 0, 0, 0.88);
+  background: rgba(255, 255, 255, 0.34);
+  border-radius: 0;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown code {
+  padding: 0.15em 0.35em;
+  border-radius: 0;
+  background: rgba(19, 43, 86, 0.08);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.95em;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown pre {
+  overflow-x: auto;
+  padding: 0.85em 1em;
+  border-radius: 0;
+  background: rgba(19, 43, 86, 0.08);
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  white-space: pre;
+}
+
+.legal-consult-chat-shell .chat-item .message-markdown a {
+  color: rgba(0, 0, 0, 0.98);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-consult-chat-shell .chat-item.user .message-content {
+  color: #000000;
+}
+
+.legal-consult-faqs {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: none;
+  height: 100%;
+  padding: 14px;
+  min-width: 0;
+}
+
+.legal-consult-faq-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.legal-consult-faq-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.2;
+  color: #000000;
+  text-align: left;
+}
+
+.legal-consult-faq-more {
+  font-size: 13px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.legal-consult-faq-more:hover {
+  text-decoration: underline;
+}
+
+.legal-consult-faq-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 2px;
+}
+
+.legal-consult-faq-item {
+  height: 92px;
+  box-sizing: border-box;
+  border-radius: 0;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  padding: 10px 12px;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.legal-consult-faq-item-query {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legal-consult-faq-item-answer {
+  margin: 0;
+  font-size: 12px;
+  color: #000000;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.legal-consult-faq-empty {
+  border-radius: 0;
+  padding: 18px 12px;
+  background: #fafafa;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.legal-consult-faq-pagination {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.legal-consult-faq-page-btn {
+  border: none;
+  border-radius: 0;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.legal-consult-faq-page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.legal-consult-faq-page-indicator {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.chat-item-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-legal-index {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.72);
+  padding-top: 6px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.chat-item.user .message-plain {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.chat-law-citations {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.chat-law-citations-line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.chat-law-citations-line-indented {
+  padding-left: 2.5em;
+  text-indent: 0;
+}
+
+.chat-law-citation-btn {
+  display: inline;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: rgba(0, 71, 171, 0.95);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.chat-law-citation-btn:hover {
+  color: #0071e3;
+}
+
+.law-source-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.law-source-modal[hidden] {
+  display: none;
+}
+
+.law-source-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.law-source-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  max-height: min(82vh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--hairline, rgba(0, 0, 0, 0.12));
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.law-source-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.law-source-modal-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #000;
+}
+
+.law-source-modal-close {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  padding: 0 4px;
+}
+
+.law-source-modal-close:hover {
+  color: #000;
+}
+
+.law-source-modal-body {
+  margin: 0;
+  padding: 14px 16px 16px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #111;
+  font-family: inherit;
+}
+
+body.law-source-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .legal-consult-workspace {
+    grid-template-columns: 1fr;
+    width: min(96vw, 720px);
+  }
+
+  .legal-consult-sessions {
+    max-height: 200px;
+    min-height: auto;
+  }
+
+  .legal-consult-sessions-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .legal-consult-new-btn {
+    width: auto;
+  }
+
+  .legal-consult-faqs {
+    max-height: 260px;
+    min-height: auto;
+  }
+}

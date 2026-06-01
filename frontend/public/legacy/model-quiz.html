@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>模型做题验证 - 知法 Legal</title>
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/model-quiz.css">
+</head>
+<body>
+  <div class="overlay"></div>
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="model-quiz"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|document-generator:文书生成:/document-generator|rights-management:档案管理:/rights-management|model-quiz:模型验证:/model-quiz"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay model-quiz-workspace" aria-label="模型做题验证">
+      <section class="panel left-panel model-quiz-panel">
+        <div class="panel-head">
+          <h1>模型做题验证</h1>
+          <p>本题集对齐「劳动保障监察投诉书」文书页字段（投诉人 / 被投诉人 / 正文），写入 RightsCase 后可回读为 collectFormData 形状做校验。</p>
+        </div>
+        <div class="model-quiz-progress">
+          <span id="quizStepText">第 1 题 / 共 6 题</span>
+          <div class="model-quiz-progress-track"><div id="quizProgressFill" class="model-quiz-progress-fill"></div></div>
+        </div>
+        <form id="quizForm" class="model-quiz-form">
+          <h3 id="quizQuestionTitle"></h3>
+          <p id="quizQuestionHint" class="model-quiz-hint"></p>
+          <div id="quizAnswerArea"></div>
+          <div class="model-quiz-actions">
+            <button type="button" class="liquid-glass search-btn doc-gen-secondary" id="quizPrevBtn">上一题</button>
+            <button type="button" class="liquid-glass search-btn" id="quizNextBtn">下一题</button>
+            <button type="button" class="liquid-glass search-btn" id="quizValidateBtn">校验模型映射</button>
+          </div>
+          <p id="quizStatus" class="model-quiz-status"></p>
+        </form>
+      </section>
+
+      <aside class="panel right-panel model-quiz-preview">
+        <div class="detail-head"><h2>模型预览</h2></div>
+        <div id="quizSummary" class="detail-body model-quiz-summary"></div>
+        <h3>RightsCase(JSON)</h3>
+        <pre id="quizJsonPreview" class="model-quiz-json"></pre>
+      </aside>
+    </section>
+  </main>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/model-quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+.login-hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 12px 40px;
+}
+
+.login-panel-wrap {
+  width: min(460px, 100%);
+  margin: 0 auto;
+}
+
+.login-panel {
+  width: 100%;
+  border-radius: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.panel-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: -0.8px;
+}
+
+.panel-subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.login-form {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: #fafafa;
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.field-input:focus {
+  border-color: rgba(158, 191, 255, 0.8);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.form-row {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.remember input {
+  accent-color: #82a8ff;
+}
+
+.forgot-link {
+  color: rgba(0, 0, 0, 0.95);
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  opacity: 0.85;
+}
+
+.login-submit {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px 22px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.login-error {
+  min-height: 20px;
+  margin-top: 4px;
+  color: #c83434;
+  font-size: 13px;
+}
+
+.form-foot {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.form-foot a {
+  color: rgba(0, 0, 0, 0.95);
+  text-decoration: none;
+}
+
+.form-foot a:hover {
+  opacity: 0.85;
+}

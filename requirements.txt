@@ -1,0 +1,8 @@
+flask
+fastapi
+uvicorn
+requests
+openai
+pypdf
+python-docx
+openpyxl

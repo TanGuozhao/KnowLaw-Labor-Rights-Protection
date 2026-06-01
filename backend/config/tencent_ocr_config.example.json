@@ -1,0 +1,5 @@
+﻿{
+  "secret_id": "REPLACE_WITH_TENCENT_CLOUD_SECRET_ID",
+  "secret_key": "REPLACE_WITH_TENCENT_CLOUD_SECRET_KEY",
+  "region": "ap-guangzhou"
+}

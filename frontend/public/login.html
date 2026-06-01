@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>登录 - 知法劳动维权法律服务平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/login.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="guest-link"
+      data-navbar-active=""
+      data-navbar-menu="home:首页:/|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+      data-navbar-guest-text="返回首页"
+      data-navbar-guest-href="/"
+    ></div>
+
+    <section class="login-hero">
+      <div class="login-panel-wrap animate-fade-rise-delay">
+        <section class="login-panel" aria-label="登录面板">
+          <h1 class="panel-title">欢迎登录</h1>
+          <p class="panel-subtitle">尊重劳动者权益</p>
+
+          <form class="login-form" id="loginForm">
+            <div>
+              <label class="field-label" for="account">手机号 / 邮箱</label>
+              <input class="field-input" id="account" name="account" type="text" placeholder="请输入手机号或邮箱" required>
+            </div>
+            <div>
+              <label class="field-label" for="password">密码</label>
+              <input class="field-input" id="password" name="password" type="password" placeholder="请输入登录密码" required>
+            </div>
+
+            <div class="form-row">
+              <label class="remember" for="remember">
+                <input id="remember" name="remember" type="checkbox">
+                记住登录状态
+              </label>
+              <a class="forgot-link" href="#">忘记密码？</a>
+            </div>
+
+            <div class="login-error" id="loginError"></div>
+            <button type="submit" class="liquid-glass login-submit" id="submitBtn">登录</button>
+            <p class="form-foot">
+              还没有账号？<a href="/register">立即注册</a>
+            </p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/login.js"></script>
+</body>
+</html>

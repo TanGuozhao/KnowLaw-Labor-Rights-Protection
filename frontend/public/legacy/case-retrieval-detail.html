@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>类案详情 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/case-retrieval-detail.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page case-detail-page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="retrieval"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay case-detail-workspace" aria-label="类案详情页面">
+      <section class="panel left-panel case-detail-panel" aria-label="类案详情">
+        <div class="case-detail-toolbar">
+          <a class="liquid-glass case-detail-toolbar-btn" id="caseDetailBackBtn" href="/case-retrieval">返回检索结果</a>
+          <button type="button" class="liquid-glass case-detail-toolbar-btn case-detail-toolbar-btn--ghost" id="caseDetailPrintBtn">打印文书</button>
+        </div>
+
+        <div class="case-detail-view" id="caseDetailView" aria-live="polite">
+          <div class="case-detail-state">
+            <h1 class="case-detail-state-title">正在准备文书</h1>
+            <p class="case-detail-state-text">请稍候，正在加载当前检索结果的详情。</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/case-retrieval-detail.js"></script>
+</body>
+</html>

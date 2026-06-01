@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>FAQ 详情 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/consult-faq-detail.css">
+</head>
+<body>
+  <div class="overlay"></div>
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="legal-consult"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay consult-faq-detail-workspace" aria-label="常见问题详情页面">
+      <header class="consult-faq-detail-head">
+        <h1 class="consult-faq-detail-title">FAQ 详情</h1>
+        <a class="consult-faq-detail-back" href="/consult-faqs">返回常见问题</a>
+      </header>
+
+      <article class="consult-faq-detail-card" id="faqDetailCard">
+        <p class="consult-faq-detail-empty">未找到详情内容，请返回列表后重新进入。</p>
+      </article>
+    </section>
+  </main>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/consult-faq-detail.js"></script>
+</body>
+</html>

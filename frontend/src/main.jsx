@@ -1,0 +1,17 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "./styles/common.css";
+import "./styles/home.css";
+import "./styles/main-navigation.css";
+import "./styles/rights-guide.css";
+import "./styles/start-quiz.css";
+
+createRoot(document.getElementById("app")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);

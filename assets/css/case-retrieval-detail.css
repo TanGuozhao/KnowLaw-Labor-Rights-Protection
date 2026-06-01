@@ -1,0 +1,441 @@
+/* 整页随正文伸长，避免「外层不滚、仅中间区域滚」的嵌套滑动 */
+main.page.case-detail-page {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.case-detail-page.workspace.case-detail-workspace,
+.workspace.case-detail-workspace {
+  flex: 0 0 auto;
+  min-height: auto;
+  overflow: visible;
+}
+
+.case-detail-page .case-detail-panel {
+  flex: 0 0 auto;
+  min-height: auto;
+  overflow: visible;
+}
+
+.case-detail-workspace {
+  width: min(96vw, 1560px);
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.case-detail-panel {
+  padding: 24px 28px;
+  gap: 18px;
+}
+
+.case-detail-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.case-detail-toolbar-btn {
+  text-decoration: none;
+  border: none;
+  padding: 11px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-detail-toolbar-btn--ghost {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.case-detail-view {
+  flex: 0 0 auto;
+  min-height: auto;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.case-detail-state {
+  min-height: 420px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(249, 250, 252, 0.94);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.case-detail-state--error {
+  background: rgba(255, 248, 248, 0.96);
+}
+
+.case-detail-state-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 38px;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.case-detail-state-text {
+  max-width: 600px;
+  margin: 12px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.case-detail-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-summary-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 250, 252, 0.98) 100%);
+  padding: 28px 32px 30px;
+}
+
+.case-summary-card--law {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 250, 255, 0.98) 100%);
+}
+
+.case-summary-eyebrow {
+  margin: 0 0 8px;
+  color: rgba(180, 35, 24, 0.88);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.case-summary-title {
+  margin: 0;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 700;
+  line-height: 1.38;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.case-summary-grid {
+  margin: 18px 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+.case-summary-grid dt,
+.case-summary-grid dd {
+  margin: 0;
+}
+
+.case-summary-grid-item {
+  min-width: 0;
+}
+
+.case-summary-grid-label {
+  color: rgba(51, 65, 85, 0.72);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
+
+.case-summary-grid-value {
+  margin-top: 5px;
+  color: #1e3a5f;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.case-paper {
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  padding: 36px 44px 44px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  overflow: visible;
+}
+
+.case-paper::before,
+.case-paper::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.case-paper::before {
+  inset: 16% 20%;
+  border-radius: 50%;
+  border: 2px solid rgba(21, 70, 134, 0.06);
+  transform: scale(1.12);
+}
+
+.case-paper::after {
+  inset: 10% 30%;
+  background:
+    radial-gradient(circle, rgba(180, 35, 24, 0.045) 0 35%, transparent 35% 100%);
+  opacity: 0.26;
+}
+
+.case-paper--law::before,
+.case-paper--law::after {
+  display: none;
+}
+
+.case-paper-header,
+.case-paper-body,
+.case-paper-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.case-paper-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.case-paper-court {
+  margin: 0;
+  color: #173a63;
+  font-size: clamp(30px, 2.3vw, 40px);
+  font-weight: 600;
+  line-height: 1.34;
+  text-align: center;
+}
+
+.case-paper-doc-type {
+  margin: 0;
+  color: #102a43;
+  font-size: clamp(22px, 1.7vw, 28px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-align: center;
+}
+
+.case-paper-doc-type--law {
+  letter-spacing: normal;
+  text-indent: 0;
+}
+
+.case-paper-doc-number {
+  width: 100%;
+  margin: 6px 0 0;
+  color: #173a63;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.case-paper-body {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.case-paper-body--continuous {
+  margin-top: 0;
+}
+
+.case-paper-body-flat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.case-paper-body-flat .case-paper-paragraph {
+  margin: 0;
+}
+
+.case-paper-value {
+  display: inline;
+}
+
+.case-paper-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.case-paper-section-title {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 4px solid rgba(23, 58, 99, 0.24);
+  color: #173a63;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+}
+
+.case-paper-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-paper-paragraph,
+.case-paper-rich,
+.case-paper-sign-text,
+.case-paper-sign-date {
+  margin: 0;
+  color: #0f172a;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.case-paper-rich p {
+  margin: 0 0 16px;
+  text-indent: 2em;
+}
+
+.case-paper-rich p:last-child {
+  margin-bottom: 0;
+}
+
+.case-paper-paragraph--body {
+  text-indent: 2em;
+}
+
+.case-paper-paragraph--kv {
+  text-indent: 0;
+}
+
+.case-paper-paragraph--list {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.case-paper-label {
+  color: #294766;
+  font-weight: 600;
+  margin-right: 0.3em;
+}
+
+.case-paper-empty {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.case-paper-footer {
+  margin-top: 48px;
+  margin-left: auto;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.case-paper-sign-line {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 26px;
+  align-items: baseline;
+  justify-items: end;
+  color: #173a63;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.case-paper-sign-role {
+  font-weight: 500;
+}
+
+.case-paper-sign-name {
+  min-width: 5em;
+  text-align: right;
+}
+
+.case-paper-sign-date {
+  text-align: right;
+}
+
+.case-paper-sign-text {
+  text-align: right;
+}
+
+.case-detail-shell em,
+.case-paper em {
+  font-style: normal;
+  color: rgba(180, 35, 24, 0.94);
+}
+
+@media print {
+  .overlay,
+  #sharedNavbar,
+  .case-detail-toolbar {
+    display: none !important;
+  }
+
+  .page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .case-detail-workspace,
+  .workspace {
+    width: 100%;
+    padding: 0;
+  }
+
+  .case-detail-panel {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .case-summary-card {
+    border: none;
+    padding: 0 0 20px;
+    background: none;
+  }
+
+  .case-paper {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .case-detail-toolbar {
+    justify-content: flex-start;
+  }
+
+  .case-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-paper {
+    padding: 30px 22px 36px;
+  }
+
+  .case-paper::before {
+    inset: 18% 14%;
+  }
+}

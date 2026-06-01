@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>文件审查 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/file-review.css">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-active="file-review"
+      data-navbar-menu="home:首页:/|main:服务导航:/main|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+
+    <section class="workspace animate-fade-rise-delay file-review-workspace" aria-label="文件审查">
+      <aside class="panel left-panel fr-left" aria-label="上传与审查记录">
+        <div class="detail-head">
+          <h2>审查记录</h2>
+        </div>
+        <div class="detail-body fr-left-body">
+          <label class="fr-upload">
+            <input
+              type="file"
+              id="fileReviewInput"
+              accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,image/jpeg,image/png,image/webp,image/gif,image/bmp,.pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.webp,.gif,.bmp"
+              hidden
+            >
+            <span class="liquid-glass fr-upload-btn">上传文件</span>
+          </label>
+          <p id="fileReviewFileHint" class="fr-upload-hint" aria-live="polite"></p>
+          <input
+            type="search"
+            id="frHistorySearch"
+            class="search-input fr-search"
+            placeholder="输入文件名"
+            autocomplete="off"
+            aria-label="搜索历史文件"
+          >
+          <ul class="fr-history-list" id="frHistoryList" role="list"></ul>
+        </div>
+      </aside>
+
+      <section class="panel left-panel fr-center" aria-label="文件阅读">
+        <div class="detail-head fr-center-head">
+          <div>
+            <h2>文件阅读</h2>
+            <p class="fr-current-file">当前：<span id="frCurrentFileName">未打开文件</span></p>
+          </div>
+          <span class="fr-readonly-tag">只读</span>
+        </div>
+        <div class="detail-body fr-doc-body" id="frDocScroll">
+          <p id="frDocStatus" class="fr-doc-status" role="status" aria-live="polite"></p>
+          <div id="frDocEmpty" class="fr-doc-empty">
+            <p class="fr-sheet-p fr-doc-empty-hint" data-fr-placeholder>
+              请先上传文件，或从左侧历史记录中打开；支持 PDF、Word（docx）、纯文本与图片。
+            </p>
+          </div>
+          <div id="frDocFrame" class="fr-pdf-viewer hidden" aria-label="PDF 预览"></div>
+          <img id="frDocImage" class="fr-doc-image hidden" alt="图片预览">
+          <div id="frDocHtml" class="fr-doc-html hidden"></div>
+          <div id="frDocPlain" class="fr-doc-plain hidden"></div>
+          <div id="frDocUnsupported" class="fr-doc-unsupported hidden" role="note"></div>
+        </div>
+      </section>
+
+      <aside class="panel right-panel fr-right" aria-label="审查结果">
+        <div class="detail-head">
+          <h2>审查结果</h2>
+          <p>按风险点展示说明与建议；正文默认高亮对应片段，点击条目可滚动定位。</p>
+        </div>
+        <div class="fr-result-tabs" role="tablist" aria-label="审查结果分组">
+          <button type="button" class="liquid-glass fr-tab is-active" role="tab" aria-selected="true" data-tab="ai">AI审查</button>
+          <button type="button" class="liquid-glass fr-tab" role="tab" aria-selected="false" data-tab="summary">文书摘要</button>
+        </div>
+        <div class="fr-result-filters">
+          <select id="frContractType" class="search-input fr-filter-select" aria-label="文书类型">
+            <option value="labor_contract">劳动合同</option>
+            <option value="civil_complaint">民事起诉状</option>
+            <option value="general_document" selected>通用审查</option>
+          </select>
+          <select id="frReviewStance" class="search-input fr-filter-select" aria-label="审查视角">
+            <option selected>提交方（出具/主张方）</option>
+            <option>相对方（受约束/风险承担方）</option>
+            <option>第三方（中立）</option>
+          </select>
+        </div>
+        <div class="detail-body fr-right-body">
+          <div id="frPaneAi" class="fr-pane is-visible" role="tabpanel" data-pane="ai">
+            <p id="frAiMeta" class="fr-ai-meta" aria-live="polite"></p>
+            <div id="frRiskListRoot" class="fr-risk-list"></div>
+          </div>
+          <div id="frPaneSummary" class="fr-pane" role="tabpanel" data-pane="summary">
+            <p id="frSummaryMeta" class="fr-summary-meta" aria-live="polite"></p>
+            <div id="frSummaryRoot" class="fr-summary-root">
+              <p class="fr-pane-placeholder">完成「开始审查」后，将自动生成摘要、检索结果与审查说明。</p>
+            </div>
+          </div>
+        </div>
+        <div class="fr-result-actions">
+          <button type="button" class="liquid-glass fr-action" id="frRerunBtn">开始审查</button>
+          <button type="button" class="liquid-glass fr-action fr-action--report" id="frDownloadBtn" disabled>下载报告</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog class="fr-review-dialog" id="frReviewRequirementsDialog" aria-labelledby="frReviewDialogTitle">
+    <div class="fr-review-dialog__panel">
+      <div class="fr-review-dialog__head">
+        <h2 id="frReviewDialogTitle">本次检查要点与要求</h2>
+        <p id="frReviewRequirementsHint" class="fr-review-dialog__hint">
+          可填写本次特别关注的风险点、临时规则、业务背景或审查底线。留空则仅按预设规则和相关法条检查。
+        </p>
+      </div>
+      <label class="fr-review-dialog__label" for="frReviewRequirementsInput">检查要点和要求</label>
+      <textarea
+        id="frReviewRequirementsInput"
+        class="search-input fr-review-dialog__textarea"
+        rows="8"
+        placeholder="例如：1. 重点检查授权链、送达条款和违约金上限；2. 这次以相对方视角为主；3. 如涉及劳动、数据或知识产权，请额外关注强制性规定。"
+      ></textarea>
+      <p class="fr-review-dialog__tip">
+        审查将同时遵循：你本次手动输入的要求、预设清单规则、以及能检索到的相关法条。
+      </p>
+      <div class="fr-review-dialog__actions">
+        <button type="button" class="liquid-glass fr-review-dialog__ghost" id="frReviewRequirementsClear">清空</button>
+        <button type="button" class="liquid-glass fr-review-dialog__ghost" id="frReviewRequirementsCancel">取消</button>
+        <button type="button" class="liquid-glass fr-review-dialog__submit" id="frReviewRequirementsConfirm">按要求开始审查</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script src="./assets/js/vendor/mammoth.browser.min.js"></script>
+  <script type="module" src="./assets/js/file-review.js"></script>
+</body>
+</html>

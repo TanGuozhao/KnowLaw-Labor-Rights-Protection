@@ -1,0 +1,134 @@
+.register-hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 12px 40px;
+}
+
+.register-panel-wrap {
+  width: min(720px, 100%);
+  margin: 0 auto;
+}
+
+.register-panel {
+  width: 100%;
+  border-radius: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.panel-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: -0.8px;
+}
+
+.panel-subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.register-form {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--hairline);
+  background: #fafafa;
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.field-input:focus {
+  border-color: rgba(158, 191, 255, 0.8);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+select.field-input option {
+  background: #ffffff;
+}
+
+.agreement {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.agreement input {
+  accent-color: #82a8ff;
+}
+
+.register-submit {
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px 22px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.register-error {
+  min-height: 20px;
+  margin-top: 2px;
+  color: #c83434;
+  font-size: 13px;
+}
+
+.form-foot {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.form-foot a {
+  color: rgba(0, 0, 0, 0.95);
+  text-decoration: none;
+}
+
+.form-foot a:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 760px) {
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+}

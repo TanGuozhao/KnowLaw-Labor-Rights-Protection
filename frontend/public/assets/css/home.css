@@ -1,0 +1,210 @@
+.page {
+  max-width: none;
+}
+
+.home-page {
+  max-width: none;
+  padding: 0;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+}
+
+.home-snap-container {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.home-section {
+  height: 100vh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: none;
+  z-index: 20;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: var(--nav-glass);
+  border: none;
+  box-shadow: none;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 112px 24px 48px;
+  background: var(--pure-black);
+  color: #ffffff;
+}
+
+.home-section-1.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 7vw, 56px);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+  max-width: 980px;
+  color: #ffffff;
+}
+
+.subtitle {
+  margin-top: 24px;
+  max-width: 620px;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-weight: 400;
+  line-height: 1.19;
+  letter-spacing: 0.231px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cta {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-section-2,
+.home-section-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 24px;
+  background: var(--page-bg);
+}
+
+.home-section-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 24px;
+  background: var(--pure-black);
+}
+
+.home-section-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 620px;
+  width: min(620px, calc(100vw - 48px));
+  text-align: left;
+}
+
+.home-section-2 .home-section-content,
+.home-section-4 .home-section-content {
+  color: var(--text);
+}
+
+.home-section-3 .home-section-content {
+  color: #ffffff;
+}
+
+.home-section-2 .home-section-content {
+  right: max(24px, 8vw);
+}
+
+.home-section-3 .home-section-content,
+.home-section-4 .home-section-content {
+  left: max(24px, 8vw);
+}
+
+.home-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: normal;
+  line-height: 1.1;
+}
+
+.home-section-2 .home-section-title,
+.home-section-4 .home-section-title {
+  color: var(--text);
+}
+
+.home-section-3 .home-section-title {
+  color: #ffffff;
+}
+
+.home-section-subtitle {
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.home-section-2 .home-section-subtitle,
+.home-section-4 .home-section-subtitle {
+  color: var(--text-secondary);
+}
+
+.home-section-3 .home-section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.home-scroll-down {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 18;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.home-scroll-down.is-visible {
+  display: flex;
+}
+
+.home-scroll-down:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.home-scroll-down:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+.home-scroll-down--light {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.home-scroll-down--light:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+  border-color: rgba(0, 0, 0, 0.2);
+}

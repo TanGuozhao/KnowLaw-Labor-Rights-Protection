@@ -1,0 +1,32 @@
+﻿# Local secrets and runtime configs
+backend/config/llm_config.json
+backend/config/contract_review_llm.json
+backend/config/evidence_graph_llm_config.json
+backend/config/evidence_file_llm_config.json
+backend/config/tencent_ocr_config.json
+backend/config/youdao_ocr_config.json
+backend/config/deli_config.json
+.env
+*.env
+
+# Local databases and user uploads
+data.sqlite
+backend/database/*.db
+backend/uploads/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+node_modules/
+dist/
+
+# Editor / OS
+.DS_Store
+Thumbs.db

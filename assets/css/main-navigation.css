@@ -1,0 +1,101 @@
+.nav-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nav-page .workspace {
+  flex: 1;
+  width: min(86vw, 1100px);
+  margin: 0 auto;
+  padding: 18px 0 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-page-header h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Instrument Serif", serif;
+  font-size: clamp(36px, 4.2vw, 48px);
+  line-height: 1.1;
+  color: #1d1d1f;
+  text-align: center;
+  letter-spacing: 0.2px;
+  text-shadow: none;
+}
+
+.nav-page-header p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.72);
+  text-align: center;
+}
+
+.nav-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(72vh, 74vw, 820px);
+}
+
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 0;
+  padding: 20px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  box-shadow: none;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+
+.nav-card--text-only {
+  justify-content: center;
+}
+
+.nav-card-thumb {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  margin: -4px 0 0;
+}
+
+.nav-card-thumb img {
+  width: min(78%, 168px);
+  height: auto;
+  object-fit: contain;
+}
+
+.nav-card-text {
+  flex-shrink: 0;
+}
+
+.nav-card:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  background: #fafafa;
+}
+
+.nav-card h2 {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(28px, 2.3vw, 34px);
+  line-height: 1.12;
+  color: #1d1d1f;
+  text-align: center;
+}
+
+.nav-card p {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: center;
+}

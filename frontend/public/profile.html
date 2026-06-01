@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>个人中心 - 知法 Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/profile.css">
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <main class="page">
+    <div
+      id="sharedNavbar"
+      data-navbar-variant="protected"
+      data-navbar-menu="home:首页:/|rights-guide:维权指南:/rights-guide|legal-consult:法律咨询:/legal-consult|retrieval:类案检索:/case-retrieval|file-review:文件审查:/file-review|document-generator:文书生成:/document-generator|my-cases:我的案件:/my-cases"
+    ></div>
+    <section class="workspace animate-fade-rise-delay profile-workspace" aria-label="个人中心">
+      <section class="panel left-panel profile-main-panel">
+        <header class="profile-head">
+          <div class="profile-avatar" aria-hidden="true" id="profileAvatar">知</div>
+          <div class="profile-title-wrap">
+            <span class="profile-kicker">Account Center</span>
+            <h1 id="profileName">用户</h1>
+            <p id="profileWelcome">完善你的个人资料与账号安全信息。</p>
+          </div>
+        </header>
+        <nav class="profile-subnav" aria-label="个人中心次级导航">
+          <button class="profile-subnav-item is-active" id="profileTabBasic" type="button"
+            data-profile-tab="basic">基础资料</button>
+          <button class="profile-subnav-item" id="profileTabSecurity" type="button"
+            data-profile-tab="security">账号安全</button>
+        </nav>
+        <section class="profile-pane" id="profilePaneBasic" data-profile-pane="basic">
+          <article class="profile-card profile-editor-card">
+            <div class="profile-section-head">
+              <div>
+                <h2>基础资料</h2>
+                <p>在这里补充和修改你的姓名、性别、联系方式、地区、住址、职业与学校信息。</p>
+              </div>
+            </div>
+            <form id="profileForm" class="profile-form">
+              <div class="profile-field-grid profile-field-grid-two">
+                <div><label class="field-label" for="profileNameInput">姓名</label><input class="field-input"
+                    id="profileNameInput" name="name" type="text" maxlength="50" placeholder="请输入姓名" required></div>
+                <div><label class="field-label" for="profileGenderInput">性别</label><select class="field-input"
+                    id="profileGenderInput" name="gender">
+                    <option value="">请选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                  </select></div>
+                <div><label class="field-label" for="profileBirthDateInput">出生日期</label><input class="field-input"
+                    id="profileBirthDateInput" name="birth_date" type="date"></div>
+                <div><label class="field-label" for="profileEthnicityInput">民族</label><input class="field-input"
+                    id="profileEthnicityInput" name="ethnicity" type="text" maxlength="20" placeholder="如：汉族"></div>
+                <div><label class="field-label" for="profilePhoneInput">电话号码</label><input class="field-input"
+                    id="profilePhoneInput" name="phone" type="tel" maxlength="11" placeholder="请输入11位手机号"></div>
+                <div><label class="field-label" for="profileLandlineInput">固定电话</label><input class="field-input"
+                    id="profileLandlineInput" name="landline_phone" type="text" maxlength="20"
+                    placeholder="请输入固定电话（可选）"></div>
+                <div><label class="field-label" for="profileEmailInput">邮箱</label><input class="field-input"
+                    id="profileEmailInput" name="email" type="email" maxlength="120" placeholder="请输入常用邮箱"></div>
+                <div><label class="field-label" for="profilePostalCodeInput">邮编</label><input class="field-input"
+                    id="profilePostalCodeInput" name="postal_code" type="text" maxlength="12" placeholder="请输入邮政编码">
+                </div>
+                <div><label class="field-label" for="profileIdCardInput">身份证号</label><input class="field-input"
+                    id="profileIdCardInput" name="id_card" type="text" maxlength="18" placeholder="请输入18位身份证号"></div>
+                <div><label class="field-label" for="profileOccupationInput">职业</label><input class="field-input"
+                    id="profileOccupationInput" name="occupation" type="text" maxlength="80" placeholder="请输入职业"></div>
+                <div class="profile-field-span-2"><label class="field-label" for="profileSchoolInput">学校</label><input
+                    class="field-input" id="profileSchoolInput" name="school" type="text" maxlength="120"
+                    placeholder="请输入学校名称"></div>
+              </div>
+              <div class="profile-region-wrap">
+                <span class="field-label">地区</span>
+                <div class="profile-field-grid profile-field-grid-three">
+                  <select class="field-input" id="profileProvinceInput" name="province">
+                    <option value="">请选择省份</option>
+                  </select>
+                  <select class="field-input" id="profileCityInput" name="city" disabled>
+                    <option value="">请选择城市</option>
+                  </select>
+                  <select class="field-input" id="profileDistrictInput" name="district" disabled>
+                    <option value="">请选择区县</option>
+                  </select>
+                </div>
+                <p class="field-tip">家庭住址请填写到详细地址中，地区仅保存省市区信息。</p>
+              </div>
+              <div><label class="field-label" for="profileHomeAddressInput">家庭住址</label><textarea
+                  class="field-input field-textarea" id="profileHomeAddressInput" name="home_addr" rows="4"
+                  maxlength="200" placeholder="请输入详细住址"></textarea></div>
+              <div class="form-message" id="profileFormMessage" aria-live="polite"></div>
+              <div class="profile-form-actions"><button class="liquid-glass profile-submit-btn" id="profileSaveBtn"
+                  type="submit">保存资料</button></div>
+            </form>
+          </article>
+        </section>
+        <section class="profile-pane profile-pane-hidden" id="profilePaneSecurity" data-profile-pane="security">
+          <div class="profile-section-head">
+            <div>
+              <h2>个人安全中心</h2>
+              <p>在账号安全页中维护登录凭证与找回密码能力。</p>
+            </div>
+          </div>
+          <section class="profile-security-grid" aria-label="账号安全">
+            <article class="profile-card">
+              <div class="profile-section-head compact">
+                <div>
+                  <h2>修改密码</h2>
+                  <p>适合你记得当前密码时使用。</p>
+                </div>
+              </div>
+              <form id="changePasswordForm" class="profile-form profile-form-tight">
+                <div><label class="field-label" for="changePasswordOld">当前密码</label><input class="field-input"
+                    id="changePasswordOld" name="old_password" type="password" minlength="6" placeholder="请输入当前密码"
+                    required></div>
+                <div><label class="field-label" for="changePasswordNew">新密码</label><input class="field-input"
+                    id="changePasswordNew" name="new_password" type="password" minlength="6" placeholder="请输入新密码"
+                    required></div>
+                <div><label class="field-label" for="changePasswordConfirm">确认新密码</label><input class="field-input"
+                    id="changePasswordConfirm" name="confirm_password" type="password" minlength="6"
+                    placeholder="请再次输入新密码" required></div>
+                <div class="form-message" id="changePasswordMessage" aria-live="polite"></div>
+                <button class="liquid-glass profile-submit-btn" id="changePasswordBtn" type="submit">修改密码</button>
+              </form>
+            </article>
+          </section>
+        </section>
+      </section>
+      <aside class="panel right-panel profile-side-panel">
+        <article class="profile-card profile-summary-card">
+          <div class="profile-section-head compact">
+            <div>
+              <h2>资料概览</h2>
+              <p>这里会实时展示你当前保存的个人资料。</p>
+            </div>
+          </div>
+          <dl class="profile-info-list">
+            <div>
+              <dt>姓名</dt>
+              <dd id="profileInfoName">-</dd>
+            </div>
+            <div>
+              <dt>性别</dt>
+              <dd id="profileInfoGender">-</dd>
+            </div>
+            <div>
+              <dt>电话号码</dt>
+              <dd id="profileInfoPhone">-</dd>
+            </div>
+            <div>
+              <dt>固定电话</dt>
+              <dd id="profileInfoLandline">-</dd>
+            </div>
+            <div>
+              <dt>邮箱</dt>
+              <dd id="profileInfoEmail">-</dd>
+            </div>
+            <div>
+              <dt>邮编</dt>
+              <dd id="profileInfoPostalCode">-</dd>
+            </div>
+            <div>
+              <dt>身份证号</dt>
+              <dd id="profileInfoIdCard">-</dd>
+            </div>
+            <div>
+              <dt>民族</dt>
+              <dd id="profileInfoEthnicity">-</dd>
+            </div>
+            <div>
+              <dt>出生日期</dt>
+              <dd id="profileInfoBirthDate">-</dd>
+            </div>
+            <div>
+              <dt>地区</dt>
+              <dd id="profileInfoRegion">-</dd>
+            </div>
+            <div>
+              <dt>家庭住址</dt>
+              <dd id="profileInfoAddress">-</dd>
+            </div>
+            <div>
+              <dt>职业</dt>
+              <dd id="profileInfoOccupation">-</dd>
+            </div>
+            <div>
+              <dt>学校</dt>
+              <dd id="profileInfoSchool">-</dd>
+            </div>
+            <div>
+              <dt>账号类型</dt>
+              <dd id="profileInfoType">个人用户</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="profile-card">
+          <div class="profile-section-head compact">
+            <div>
+              <h2>账号操作</h2>
+              <p>完成资料维护后，你也可以从这里退出或返回其他页面。</p>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="liquid-glass profile-action-btn" id="profileLogoutBtn" type="button">退出当前账号</button>
+            <a class="liquid-glass profile-action-btn profile-action-link" href="/main">进入服务导航</a>
+            <a class="liquid-glass profile-action-btn profile-action-link" href="/">返回首页</a>
+          </div>
+        </article>
+      </aside>
+    </section>
+  </main>
+  <script type="module" src="./assets/js/navbar.js"></script>
+  <script type="module" src="./assets/js/profile.js"></script>
+</body>
+
+</html>

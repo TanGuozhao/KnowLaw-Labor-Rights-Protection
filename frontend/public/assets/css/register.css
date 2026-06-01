@@ -1,0 +1,141 @@
+.register-hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 12px 40px;
+}
+
+.register-panel-wrap {
+  width: min(720px, 100%);
+  margin: 0 auto;
+}
+
+.register-panel {
+  width: 100%;
+  border-radius: 8px;
+  padding: 28px;
+  background: var(--surface);
+  border: none;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: normal;
+  color: var(--text);
+}
+
+.panel-subtitle {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+
+.register-form {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field-label {
+  font-size: 14px;
+  letter-spacing: -0.224px;
+  color: var(--text);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 11px;
+  border: 3px solid rgba(0, 0, 0, 0.04);
+  background: var(--filter-btn-bg);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.field-input:focus {
+  border-color: var(--apple-blue);
+  background: var(--surface);
+}
+
+select.field-input option {
+  background: #ffffff;
+}
+
+.agreement {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.agreement input {
+  accent-color: var(--apple-blue);
+}
+
+.register-submit {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 2.41;
+  border-radius: 8px;
+}
+
+.register-error {
+  min-height: 20px;
+  margin-top: 2px;
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 13px;
+}
+
+.form-foot {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.form-foot a {
+  color: var(--link-blue);
+  text-decoration: none;
+}
+
+.form-foot a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -43,32 +43,6 @@ demo视频演示文件.mp4       # 项目演示视频
 requirements.txt        # Python 依赖
 ```
 
-## 安全说明
-
-公开上传前请务必确认不要提交真实密钥、数据库和用户上传文件。
-
-已通过 `.gitignore` 忽略：
-
-- `backend/config/*_config.json` 中的真实运行配置
-- `data.sqlite`
-- `backend/database/*.db`
-- `backend/uploads/`
-- `frontend/node_modules/`
-- `frontend/dist/`
-- Python 缓存和虚拟环境
-
-可提交的配置模板包括：
-
-- `backend/config/llm_config.example.json`
-- `backend/config/contract_review_llm.example.json`
-- `backend/config/tencent_ocr_config.example.json`
-- `backend/config/youdao_ocr_config.example.json`
-- `backend/config/deli_config.example.json`
-- `backend/config/evidence_graph_llm_config.example.json`
-- `backend/config/evidence_file_llm_config.example.json`
-
-如果真实 API Key 已经出现在本地文件或截图中，请先在对应平台轮换密钥，再公开上传仓库。
-
 ## 安装依赖
 
 ### 后端
@@ -124,20 +98,3 @@ npm run dev
 ```text
 http://localhost:5173/
 ```
-
-## 上传 GitHub 建议
-
-由于本目录当前还不是 Git 仓库，首次上传可以执行：
-
-```powershell
-cd F:\KnowLaw-Labor-Rights-Protection
-git init
-git branch -M main
-git remote add origin https://github.com/TanGuozhao/KnowLaw-Labor-Rights-Protection.git
-git add .
-git status
-git commit -m "Initial KnowLaw labor rights protection project"
-git push -u origin main
-```
-
-提交前请再次确认 `git status` 中没有真实配置、数据库和用户上传文件。

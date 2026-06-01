@@ -6,11 +6,13 @@
 
 ## 演示视频
 
-仓库根目录包含演示视频：
+仓库根目录包含演示视频，可在 README 中直接播放：
 
-[点击查看演示视频：demo视频演示文件.mp4](demo视频演示文件.mp4)
+<video src="demo视频演示文件.mp4" controls width="100%">
+  您的浏览器不支持 HTML5 视频播放。可以点击下方链接下载或查看演示视频。
+</video>
 
-如果 GitHub 网页无法直接预览，可下载后本地播放。该视频约 107 MB，接近 GitHub 普通文件大小限制，正式上传时建议使用 Git LFS 或压缩为更小的 `.mp4`。
+[无法播放时点击查看演示视频](demo视频演示文件.mp4)
 
 ## 核心功能
 
@@ -136,14 +138,6 @@ git add .
 git status
 git commit -m "Initial KnowLaw labor rights protection project"
 git push -u origin main
-```
-
-如果要上传 `demo视频演示文件.mp4`，建议先启用 Git LFS：
-
-```powershell
-git lfs install
-git lfs track "*.mp4"
-git add .gitattributes demo视频演示文件.mp4
 ```
 
 提交前请再次确认 `git status` 中没有真实配置、数据库和用户上传文件。
